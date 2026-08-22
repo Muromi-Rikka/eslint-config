@@ -1,2 +1,4 @@
-reference
-docs/superpowers
+node_modules
+dist
+*.local
+.DS_Store
