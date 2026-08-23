@@ -26,6 +26,25 @@ const suites: Suite[] = [
       tailwindcssConfigPath: 'src/app.css',
     },
   },
+  {
+    name: 'with-tanstack-query',
+    configs: {
+      tanstackQuery: true,
+    },
+  },
+  {
+    name: 'with-tanstack-router',
+    configs: {
+      tanstackRouter: true,
+    },
+  },
+  {
+    name: 'with-tanstack-all',
+    configs: {
+      tanstackQuery: true,
+      tanstackRouter: true,
+    },
+  },
 ]
 
 const ignoreConfigs: string[] = [

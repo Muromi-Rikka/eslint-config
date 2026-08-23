@@ -6,6 +6,8 @@ export interface OptionsReact extends OptionsConfig {
   reactVersion?: string
   tailwindcss?: boolean
   tailwindcssConfigPath?: string
+  tanstackQuery?: boolean
+  tanstackRouter?: boolean
 }
 
 export type { TypedFlatConfigItem }
