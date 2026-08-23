@@ -114,5 +114,5 @@ export async function renton(
     composer.append(...userConfigs)
   }
 
-  return composer.compose()
+  return composer.toConfigs()
 }

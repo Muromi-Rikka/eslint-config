@@ -1,0 +1,82 @@
+import type { OptionsConfig, TypedFlatConfigItem } from '@renton/eslint-config'
+
+import fs from 'node:fs/promises'
+import { join, resolve } from 'node:path'
+import { x } from 'tinyexec'
+import { glob } from 'tinyglobby'
+
+import { afterAll, beforeAll, it } from 'vitest'
+
+const isWindows = process.platform === 'win32'
+const timeout = isWindows ? 300_000 : 60_000
+
+beforeAll(async () => {
+  await fs.rm('_fixtures', { recursive: true, force: true })
+})
+afterAll(async () => {
+  await fs.rm('_fixtures', { recursive: true, force: true })
+})
+
+runWithConfig('js', {
+  typescript: false,
+})
+
+runWithConfig('ts', {
+  typescript: true,
+})
+
+runWithConfig('ts-strict', {
+  typescript: true,
+  typeAware: true,
+})
+
+function runWithConfig(name: string, configs: OptionsConfig, ...items: TypedFlatConfigItem[]) {
+  it.concurrent(name, async ({ expect }) => {
+    const from = resolve('test/fixtures/input')
+    const output = resolve('test/fixtures/output', name)
+    const target = resolve('_fixtures', name)
+
+    await fs.cp(from, target, {
+      recursive: true,
+      filter: (src) => {
+        return !src.includes('node_modules')
+      },
+    })
+    await fs.writeFile(join(target, 'eslint.config.js'), `
+// @eslint-disable
+import { renton } from '@renton/eslint-config'
+
+export default renton(
+  ${JSON.stringify(configs)},
+  ...${JSON.stringify(items) ?? []},
+)
+  `)
+
+    await x('npx', ['eslint', '.', '--fix'], {
+      throwOnError: false,
+      nodeOptions: {
+        cwd: target,
+        stdio: 'pipe',
+      },
+    })
+
+    const files = await glob('**/*', {
+      ignore: [
+        'node_modules',
+        'eslint.config.js',
+      ],
+      cwd: target,
+    })
+
+    await Promise.all(files.map(async (file) => {
+      const content = await fs.readFile(join(target, file), 'utf-8')
+      const source = await fs.readFile(join(from, file), 'utf-8')
+      const outputPath = join(output, file)
+      if (content === source) {
+        await fs.rm(outputPath, { force: true })
+        return
+      }
+      await expect.soft(content).toMatchFileSnapshot(join(output, file))
+    }))
+  }, timeout)
+}

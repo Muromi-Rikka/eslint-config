@@ -17,7 +17,9 @@
   "files": ["dist"],
   "scripts": {
     "build": "tsdown",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "^4.7.2",

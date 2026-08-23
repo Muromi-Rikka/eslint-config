@@ -6,10 +6,15 @@
   "scripts": {
     "build": "pnpm -r run build",
     "lint": "pnpm -r run lint",
-    "release": "pnpm -r run release"
+    "release": "pnpm -r run release",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "devDependencies": {
     "tsdown": "^0.22.14",
-    "typescript": "^6.0.3"
+    "tinyexec": "^1.0.0",
+    "tinyglobby": "^0.2.14",
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.1"
   }
 }

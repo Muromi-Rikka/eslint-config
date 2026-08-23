@@ -13,7 +13,9 @@
   "files": ["dist"],
   "scripts": {
     "build": "tsdown",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@eslint-react/eslint-plugin": "^5.18.6",
