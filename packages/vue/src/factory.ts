@@ -1,5 +1,6 @@
 import type { OptionsVue, TypedFlatConfigItem } from './types'
 import { renton } from '@renton/eslint-config'
+import { tailwindcss } from '@renton/eslint-config-frontend'
 import { vue } from './configs/vue'
 
 export async function rentonVue(
@@ -9,8 +10,14 @@ export async function rentonVue(
   const {
     vue: enableVue = true,
     vueVersion = 3,
+    tailwindcss: enableTailwindcss = false,
+    tailwindcssConfigPath,
     ...baseOptions
   } = options
+
+  if (enableTailwindcss && !tailwindcssConfigPath) {
+    throw new Error('`tailwindcssConfigPath` is required when `tailwindcss` is enabled')
+  }
 
   const baseConfigs = await renton(baseOptions)
 
@@ -18,7 +25,11 @@ export async function rentonVue(
     ? await vue({ vueVersion })
     : []
 
-  const allConfigs = [...baseConfigs, ...vueConfigs]
+  const tailwindcssConfigs = enableTailwindcss
+    ? await tailwindcss({ cssConfigPath: tailwindcssConfigPath! })
+    : []
+
+  const allConfigs = [...baseConfigs, ...vueConfigs, ...tailwindcssConfigs]
 
   if (userConfigs.length > 0) {
     allConfigs.push(...userConfigs)

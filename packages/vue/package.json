@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@renton/eslint-config": "workspace:*",
+    "@renton/eslint-config-frontend": "workspace:*",
     "eslint-plugin-vue": "^10.10.0",
     "vue-eslint-parser": "^10.4.1"
   },

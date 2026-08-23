@@ -1,44 +1,24 @@
 import type { TypedFlatConfigItem } from '@renton/eslint-config'
-import type { OptionsVue } from '../src/types'
+import type { OptionsTailwindcssConfig } from '../src/configs/tailwindcss'
 import { it } from 'vitest'
-import { rentonVue } from '../src/factory'
+import { tailwindcss } from '../src/configs/tailwindcss'
 
 interface Suite {
   name: string
-  configs: OptionsVue
+  configs: OptionsTailwindcssConfig
 }
 
 const suites: Suite[] = [
   {
-    name: 'default',
-    configs: {},
-  },
-  {
-    name: 'vue2',
+    name: 'tailwindcss',
     configs: {
-      vueVersion: 2,
+      cssConfigPath: 'src/app.css',
     },
   },
-  {
-    name: 'with-tailwindcss',
-    configs: {
-      tailwindcss: true,
-      tailwindcssConfigPath: 'src/app.css',
-    },
-  },
-]
-
-const ignoreConfigs: string[] = [
-  'renton/gitignore',
-  'renton/ignores',
-  'renton/javascript/setup',
 ]
 
 function serializeConfigs(configs: TypedFlatConfigItem[]) {
   return configs.map((c) => {
-    if (c.name && ignoreConfigs.includes(c.name)) {
-      return '<ignored>'
-    }
     const clone = { ...c } as any
     if (c.plugins) {
       clone.plugins = Object.keys(c.plugins)
@@ -56,11 +36,6 @@ function serializeConfigs(configs: TypedFlatConfigItem[]) {
         delete clone.languageOptions.parserOptions.tsconfigRootDir
       }
     }
-    if (c.processor) {
-      if (typeof c.processor !== 'string') {
-        clone.processor = (c.processor as any).meta?.name ?? 'unknown'
-      }
-    }
     if (c.rules) {
       clone.rules = Object.entries(c.rules)
         .map(([rule, value]) => {
@@ -75,7 +50,7 @@ function serializeConfigs(configs: TypedFlatConfigItem[]) {
 
 suites.forEach(({ name, configs }) => {
   it.concurrent(`factory ${name}`, async ({ expect }) => {
-    const config = await rentonVue(configs)
+    const config = await tailwindcss(configs)
     await expect(serializeConfigs(config))
       .toMatchFileSnapshot(`./__snapshots__/${name}.snap.js`)
   })

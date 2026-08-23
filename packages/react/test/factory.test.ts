@@ -19,6 +19,13 @@ const suites: Suite[] = [
       next: true,
     },
   },
+  {
+    name: 'with-tailwindcss',
+    configs: {
+      tailwindcss: true,
+      tailwindcssConfigPath: 'src/app.css',
+    },
+  },
 ]
 
 const ignoreConfigs: string[] = [

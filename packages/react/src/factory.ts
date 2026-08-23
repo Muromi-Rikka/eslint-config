@@ -1,6 +1,7 @@
 import type { OptionsReact, TypedFlatConfigItem } from './types'
 import { renton } from '@renton/eslint-config'
 import { renamePluginInConfigs } from '@renton/eslint-config/utils'
+import { tailwindcss } from '@renton/eslint-config-frontend'
 import { next } from './configs/next'
 import { react } from './configs/react'
 
@@ -14,8 +15,14 @@ export async function rentonReact(
 ): Promise<TypedFlatConfigItem[]> {
   const {
     next: enableNext = false,
+    tailwindcss: enableTailwindcss = false,
+    tailwindcssConfigPath,
     ...baseOptions
   } = options
+
+  if (enableTailwindcss && !tailwindcssConfigPath) {
+    throw new Error('`tailwindcssConfigPath` is required when `tailwindcss` is enabled')
+  }
 
   const baseConfigs = await renton(baseOptions)
 
@@ -28,6 +35,10 @@ export async function rentonReact(
 
   const renamedConfigs = renamePluginInConfigs(configs, PLUGIN_RENAMING_REACT)
   const allConfigs = [...baseConfigs, ...renamedConfigs]
+
+  if (enableTailwindcss) {
+    allConfigs.push(...(await tailwindcss({ cssConfigPath: tailwindcssConfigPath! })))
+  }
 
   if (userConfigs.length > 0) {
     allConfigs.push(...userConfigs)
