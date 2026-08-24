@@ -936,6 +936,16 @@
   },
   {
     "files": [
+      "**/*.?([cm])jsx",
+      "**/*.?([cm])tsx",
+    ],
+    "name": "renton/react/perfectionist",
+    "rules": [
+      "perfectionist/sort-jsx-props",
+    ],
+  },
+  {
+    "files": [
       "**/*.ts",
       "**/*.tsx",
       "**/*.js",

@@ -934,4 +934,14 @@
       "react-refresh/only-export-components",
     ],
   },
+  {
+    "files": [
+      "**/*.?([cm])jsx",
+      "**/*.?([cm])tsx",
+    ],
+    "name": "renton/react/perfectionist",
+    "rules": [
+      "perfectionist/sort-jsx-props",
+    ],
+  },
 ]

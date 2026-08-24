@@ -935,6 +935,16 @@
     ],
   },
   {
+    "files": [
+      "**/*.?([cm])jsx",
+      "**/*.?([cm])tsx",
+    ],
+    "name": "renton/react/perfectionist",
+    "rules": [
+      "perfectionist/sort-jsx-props",
+    ],
+  },
+  {
     "name": "renton/next/rules",
     "plugins": [
       "next",

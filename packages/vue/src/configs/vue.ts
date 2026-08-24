@@ -68,5 +68,12 @@ export async function vue(options: OptionsVueConfig = {}): Promise<TypedFlatConf
         ...overrides,
       },
     },
+    {
+      files: [GLOB_VUE],
+      name: 'renton/vue/perfectionist',
+      rules: {
+        'perfectionist/sort-jsx-props': ['error', { order: 'asc', type: 'natural' }],
+      },
+    },
   ]
 }

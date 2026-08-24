@@ -1045,4 +1045,13 @@
       "vue/valid-template-root",
     ],
   },
+  {
+    "files": [
+      "**/*.vue",
+    ],
+    "name": "renton/vue/perfectionist",
+    "rules": [
+      "perfectionist/sort-jsx-props",
+    ],
+  },
 ]

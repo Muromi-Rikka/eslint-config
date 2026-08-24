@@ -1047,6 +1047,15 @@
   },
   {
     "files": [
+      "**/*.vue",
+    ],
+    "name": "renton/vue/perfectionist",
+    "rules": [
+      "perfectionist/sort-jsx-props",
+    ],
+  },
+  {
+    "files": [
       "**/*.ts",
       "**/*.tsx",
       "**/*.js",

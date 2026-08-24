@@ -1046,6 +1046,15 @@
     ],
   },
   {
+    "files": [
+      "**/*.vue",
+    ],
+    "name": "renton/vue/perfectionist",
+    "rules": [
+      "perfectionist/sort-jsx-props",
+    ],
+  },
+  {
     "name": "renton/vue-i18n/setup/0",
     "plugins": [
       "@intlify/vue-i18n",

@@ -39,5 +39,12 @@ export async function react(options: OptionsOverrides = {}): Promise<TypedFlatCo
         ...overrides,
       },
     },
+    {
+      files,
+      name: 'renton/react/perfectionist',
+      rules: {
+        'perfectionist/sort-jsx-props': ['error', { order: 'asc', type: 'natural' }],
+      },
+    },
   ]
 }
