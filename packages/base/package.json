@@ -1,6 +1,28 @@
 {
   "name": "@renton/eslint-config",
   "version": "0.1.0",
+  "description": "Base ESLint configuration for TypeScript and JavaScript projects",
+  "author": "Rikka <admin@rikka.cc>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muromi-Rikka/eslint-config.git",
+    "directory": "packages/base"
+  },
+  "bugs": {
+    "url": "https://github.com/Muromi-Rikka/eslint-config/issues"
+  },
+  "homepage": "https://github.com/Muromi-Rikka/eslint-config/tree/main/packages/base#readme",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "typescript",
+    "javascript",
+    "lint"
+  ],
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "type": "module",
   "exports": {
     ".": {

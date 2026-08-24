@@ -1,6 +1,28 @@
 {
   "name": "@renton/eslint-config-frontend",
   "version": "0.1.0",
+  "description": "ESLint configuration for frontend projects with Tailwind CSS support",
+  "author": "Rikka <admin@rikka.cc>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muromi-Rikka/eslint-config.git",
+    "directory": "packages/frontend"
+  },
+  "bugs": {
+    "url": "https://github.com/Muromi-Rikka/eslint-config/issues"
+  },
+  "homepage": "https://github.com/Muromi-Rikka/eslint-config/tree/main/packages/frontend#readme",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "frontend",
+    "tailwindcss",
+    "lint"
+  ],
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "type": "module",
   "exports": {
     ".": {

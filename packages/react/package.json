@@ -1,6 +1,29 @@
 {
   "name": "@renton/eslint-config-react",
   "version": "0.1.0",
+  "description": "ESLint configuration for React, Next.js, and React Query projects",
+  "author": "Rikka <admin@rikka.cc>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muromi-Rikka/eslint-config.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/Muromi-Rikka/eslint-config/issues"
+  },
+  "homepage": "https://github.com/Muromi-Rikka/eslint-config/tree/main/packages/react#readme",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "react",
+    "nextjs",
+    "react-query",
+    "lint"
+  ],
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "type": "module",
   "exports": {
     ".": {

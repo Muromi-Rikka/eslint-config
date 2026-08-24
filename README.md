@@ -5,7 +5,8 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/@renton/eslint-config"><img src="https://img.shields.io/npm/v/@renton/eslint-config?style=flat-square&color=5865F2" alt="npm version"></a>
   <a href="https://www.npmjs.com/package/@renton/eslint-config"><img src="https://img.shields.io/npm/dm/@renton/eslint-config?style=flat-square&color=5865F2" alt="npm downloads"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-blue?style=flat-square" alt="license"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="license"></a>
+  <img src="https://img.shields.io/badge/Node.js-%3E%3D24.0.0-339933?style=flat-square&logo=node.js" alt="Node.js">
   <img src="https://img.shields.io/badge/ESLint-%3E%3D9.0-5865F2?style=flat-square&logo=eslint" alt="ESLint">
 </p>
 
@@ -18,6 +19,12 @@
 - **Modular monorepo** — pick only what you need: base, frontend, React, or Vue
 - **Opinionated defaults** — 15+ carefully configured plugins, zero boilerplate
 - **Composable** — extend with custom rules, or stack packages for complex setups
+
+## Requirements
+
+- **Node.js** >= 24.0.0 (development requires >= 26.0.0)
+- **ESLint** >= 9.0.0
+- **pnpm** >= 10.0.0 (for development)
 
 ## Packages
 
@@ -158,4 +165,4 @@ pnpm test
 
 ## License
 
-[Apache-2.0](./LICENSE)
+[MIT](./LICENSE)
