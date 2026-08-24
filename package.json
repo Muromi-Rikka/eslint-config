@@ -17,6 +17,7 @@
     "@changesets/changelog-github": "^1.0.0",
     "@changesets/cli": "^3.0.1",
     "@renton/eslint-config": "workspace:*",
+    "@types/node": "^26.2.0",
     "eslint": "^10.9.0",
     "tinyexec": "^1.0.0",
     "tinyglobby": "^0.2.14",

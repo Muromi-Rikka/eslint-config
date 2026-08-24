@@ -44,21 +44,19 @@ export async function renton(
 
   const stylisticOptions = typeof enableStylistic === "object" ? enableStylistic : undefined;
 
-  const configs: TypedFlatConfigItem[][] = [];
+  const configs: Promise<TypedFlatConfigItem[]>[] = [];
 
   // eslint-disable-next-line unicorn/no-immediate-mutation -- local array, not mutating external reference
   configs.push(ignores());
 
   if (gitignore) {
     const { default: gitignorePlugin } = await import("eslint-config-flat-gitignore");
-    configs.push(
-      Promise.resolve([
-        {
-          ...gitignorePlugin(),
-          name: "renton/gitignore",
-        },
-      ] as TypedFlatConfigItem[]),
-    );
+    configs.push(Promise.resolve([
+      {
+        ...gitignorePlugin(),
+        name: "renton/gitignore",
+      },
+    ]));
   }
 
   configs.push(javascript());
@@ -108,7 +106,8 @@ export async function renton(
     configs.push(perfectionist());
   }
 
-  const composer = new FlatConfigComposer<TypedFlatConfigItem, string>(...configs);
+  const resolvedConfigs = await Promise.all(configs);
+  const composer = new FlatConfigComposer<TypedFlatConfigItem, string>(...resolvedConfigs);
 
   composer.renamePlugins(PLUGIN_RENAMING);
 

@@ -62,7 +62,7 @@ export async function typescript(options: OptionsTypescript = {}): Promise<Typed
       name: "renton/typescript/rules",
       rules: {
         ...tseslint.configs.eslintRecommended.rules,
-        ...tseslint.configs.strict.rules,
+        ...(tseslint.configs.strict as any).rules,
 
         "no-dupe-class-members": "off",
         "no-loss-of-precision": "off",

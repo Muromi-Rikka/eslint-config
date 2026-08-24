@@ -2,6 +2,7 @@ import type { OptionsConfig, TypedFlatConfigItem } from "@renton/eslint-config";
 
 import fs from "node:fs/promises";
 import { join, resolve } from "node:path"; // eslint-disable-line unicorn/import-style -- named imports are clearer here
+import process from "node:process";
 import { x } from "tinyexec";
 import { glob } from "tinyglobby";
 import { afterAll, beforeAll, it } from "vitest";
@@ -36,7 +37,7 @@ function runWithConfig(name: string, configs: OptionsConfig, ...items: TypedFlat
     const target = resolve("_fixtures", name);
 
     await fs.cp(from, target, {
-      filter: (source) => {
+      filter: (source: string) => {
         return !source.includes("node_modules");
       },
       recursive: true,
