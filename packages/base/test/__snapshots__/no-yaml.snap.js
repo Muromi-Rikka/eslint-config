@@ -351,6 +351,7 @@
       "pnpm",
     ],
     "rules": [
+      "pnpm/json-enforce-catalog",
       "pnpm/json-prefer-workspace-settings",
       "pnpm/json-valid-catalog",
     ],
