@@ -1,5 +1,16 @@
 # @renton/eslint-config
 
+## 0.1.1
+
+### Patch Changes
+
+- Enhance package.json metadata and add MIT license to all packages
+  
+  - Added complete metadata to all package.json files (description, author, license, repository, bugs, homepage, keywords, engines)
+  - Set Node.js version requirements: >= 26.0.0 for workspace, >= 24.0.0 for packages
+  - Added MIT LICENSE file to root and all sub-packages
+  - Updated README.md with corrected license information and Node.js version requirements
+
 ## 0.1.0
 
 ### Minor Changes
