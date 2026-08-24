@@ -1,14 +1,14 @@
-import type { TypedFlatConfigItem } from '../types'
-import { GLOB_MARKDOWN } from '../globs'
-import { interopDefault, parserPlain } from '../utils'
+import type { TypedFlatConfigItem } from "../types";
+import { GLOB_MARKDOWN } from "../globs";
+import { interopDefault, parserPlain } from "../utils";
 
 export async function markdown(): Promise<TypedFlatConfigItem[]> {
-  const pluginMarkdown = await interopDefault(import('@eslint/markdown'))
+  const pluginMarkdown = await interopDefault(import("@eslint/markdown"));
 
   return [
     {
       files: [GLOB_MARKDOWN],
-      name: 'renton/markdown/setup',
+      name: "renton/markdown/setup",
       plugins: {
         markdown: pluginMarkdown,
       },
@@ -18,7 +18,7 @@ export async function markdown(): Promise<TypedFlatConfigItem[]> {
       languageOptions: {
         parser: parserPlain as any,
       },
-      name: 'renton/markdown/parser',
+      name: "renton/markdown/parser",
     },
-  ]
+  ];
 }

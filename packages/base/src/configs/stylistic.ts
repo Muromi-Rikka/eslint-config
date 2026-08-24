@@ -1,13 +1,14 @@
-import type { StylisticOptions, TypedFlatConfigItem } from '../types'
-import { pluginAntfu } from '../plugins'
-import { interopDefault } from '../utils'
+import type { StylisticOptions, TypedFlatConfigItem } from "../types";
+import { GLOB_SRC } from "../globs";
+import { pluginAntfu } from "../plugins";
+import { interopDefault } from "../utils";
 
 const defaults: Required<StylisticOptions> = {
-  braceStyle: 'stroustrup',
+  braceStyle: "stroustrup",
   indent: 2,
-  quotes: 'double',
+  quotes: "double",
   semi: true,
-}
+};
 
 export async function stylistic(options: StylisticOptions = {}): Promise<TypedFlatConfigItem[]> {
   const {
@@ -15,22 +16,23 @@ export async function stylistic(options: StylisticOptions = {}): Promise<TypedFl
     indent,
     quotes,
     semi,
-  } = { ...defaults, ...options }
+  } = { ...defaults, ...options };
 
-  const pluginStylistic = await interopDefault(import('@stylistic/eslint-plugin'))
+  const pluginStylistic = await interopDefault(import("@stylistic/eslint-plugin"));
 
   const config = pluginStylistic.configs.customize({
     braceStyle,
     indent,
     jsx: true,
-    pluginName: 'style',
+    pluginName: "style",
     quotes,
     semi,
-  }) as TypedFlatConfigItem
+  }) as TypedFlatConfigItem;
 
   return [
     {
-      name: 'renton/stylistic/rules',
+      files: [GLOB_SRC],
+      name: "renton/stylistic/rules",
       plugins: {
         antfu: pluginAntfu,
         style: pluginStylistic,
@@ -38,15 +40,15 @@ export async function stylistic(options: StylisticOptions = {}): Promise<TypedFl
       rules: {
         ...config.rules,
 
-        'antfu/consistent-chaining': 'error',
-        'antfu/consistent-list-newline': 'error',
-        'antfu/curly': 'error',
-        'antfu/if-newline': 'error',
-        'antfu/top-level-function': 'error',
+        "antfu/consistent-chaining": "error",
+        "antfu/consistent-list-newline": "error",
+        "antfu/curly": "error",
+        "antfu/if-newline": "error",
+        "antfu/top-level-function": "error",
 
-        'style/generator-star-spacing': ['error', { after: true, before: false }],
-        'style/yield-star-spacing': ['error', { after: true, before: false }],
+        "style/generator-star-spacing": ["error", { after: true, before: false }],
+        "style/yield-star-spacing": ["error", { after: true, before: false }],
       },
     },
-  ]
+  ];
 }

@@ -1,21 +1,21 @@
-import type { OptionsOverrides, TypedFlatConfigItem } from '@renton/eslint-config'
-import { interopDefault } from '@renton/eslint-config/utils'
+import type { OptionsOverrides, TypedFlatConfigItem } from "@renton/eslint-config";
+import { interopDefault } from "@renton/eslint-config/utils";
 
 export interface OptionsVueI18nConfig extends OptionsOverrides {
-  localeDir?: string
-  messageSyntaxVersion?: string
+  localeDir?: string;
+  messageSyntaxVersion?: string;
 }
 
 export async function vueI18n(options: OptionsVueI18nConfig = {}): Promise<TypedFlatConfigItem[]> {
   const {
-    localeDir = './locales/*.{json,json5,yaml,yml}',
-    messageSyntaxVersion = '^11.0.0',
+    localeDir = "./locales/*.{json,json5,yaml,yml}", // eslint-disable-line unicorn/name-replacements -- localeDir is conventional in i18n
+    messageSyntaxVersion = "^11.0.0",
     overrides = {},
-  } = options
+  } = options;
 
-  const pluginVueI18n = await interopDefault(import('@intlify/eslint-plugin-vue-i18n'))
+  const pluginVueI18n = await interopDefault(import("@intlify/eslint-plugin-vue-i18n"));
 
-  const recommendedConfigs = pluginVueI18n.configs['flat/recommended'] as TypedFlatConfigItem[]
+  const recommendedConfigs = pluginVueI18n.configs["flat/recommended"] as TypedFlatConfigItem[];
 
   return [
     ...recommendedConfigs.map((config: TypedFlatConfigItem, index: number) => ({
@@ -23,16 +23,16 @@ export async function vueI18n(options: OptionsVueI18nConfig = {}): Promise<Typed
       name: `renton/vue-i18n/setup/${index}`,
     })),
     {
-      name: 'renton/vue-i18n/rules',
+      name: "renton/vue-i18n/rules",
+      rules: {
+        ...overrides,
+      },
       settings: {
-        'vue-i18n': {
+        "vue-i18n": {
           localeDir,
           messageSyntaxVersion,
         },
       },
-      rules: {
-        ...overrides,
-      },
     },
-  ]
+  ];
 }

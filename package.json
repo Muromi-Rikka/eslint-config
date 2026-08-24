@@ -5,12 +5,16 @@
   "packageManager": "pnpm@10.15.0",
   "scripts": {
     "build": "pnpm -r run build",
-    "lint": "pnpm -r run lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:packages": "pnpm -r run lint",
     "release": "pnpm -r run release",
     "test": "vitest",
     "test:run": "vitest run"
   },
   "devDependencies": {
+    "@renton/eslint-config": "workspace:*",
+    "eslint": "^10.9.0",
     "tinyexec": "^1.0.0",
     "tinyglobby": "^0.2.14",
     "tsdown": "^0.22.14",

@@ -1,16 +1,18 @@
-import type { OptionsOverrides, TypedFlatConfigItem } from '../types'
-import { interopDefault } from '../utils'
+import type { OptionsOverrides, TypedFlatConfigItem } from "../types";
+import { GLOB_SRC } from "../globs";
+import { interopDefault } from "../utils";
 
 export async function regexp(options: OptionsOverrides = {}): Promise<TypedFlatConfigItem[]> {
   const {
     overrides = {},
-  } = options
+  } = options;
 
-  const pluginRegexp = await interopDefault(import('eslint-plugin-regexp'))
+  const pluginRegexp = await interopDefault(import("eslint-plugin-regexp"));
 
   return [
     {
-      name: 'renton/regexp/rules',
+      files: [GLOB_SRC],
+      name: "renton/regexp/rules",
       plugins: {
         regexp: pluginRegexp,
       },
@@ -19,5 +21,5 @@ export async function regexp(options: OptionsOverrides = {}): Promise<TypedFlatC
         ...overrides,
       },
     },
-  ]
+  ];
 }

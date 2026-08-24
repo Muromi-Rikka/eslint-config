@@ -1,8 +1,28 @@
-import type { Awaitable, TypedFlatConfigItem } from './types'
+/* eslint-disable unicorn/name-replacements -- utils.ts is a conventional name */
+import type { Awaitable, TypedFlatConfigItem } from "./types";
 
 export async function interopDefault<T>(m: Awaitable<T>): Promise<T extends { default: infer U } ? U : T> {
-  const resolved = await m
-  return (resolved as any).default || resolved
+  const resolved = await m;
+  return (resolved as any).default || resolved;
+}
+
+export function renamePluginInConfigs(configs: TypedFlatConfigItem[], map: Record<string, string>): TypedFlatConfigItem[] {
+  return configs.map((index) => {
+    const clone = { ...index };
+    if (clone.rules)
+      clone.rules = renameRules(clone.rules, map);
+    if (clone.plugins) {
+      clone.plugins = Object.fromEntries(
+        Object.entries(clone.plugins)
+          .map(([key, value]) => {
+            if (Object.hasOwn(map, key))
+              return [map[key], value];
+            return [key, value];
+          }),
+      );
+    }
+    return clone;
+  });
 }
 
 export function renameRules(
@@ -14,39 +34,20 @@ export function renameRules(
       .map(([key, value]) => {
         for (const [from, to] of Object.entries(map)) {
           if (key.startsWith(`${from}/`))
-            return [to + key.slice(from.length), value]
+            return [to + key.slice(from.length), value];
         }
-        return [key, value]
+        return [key, value];
       }),
-  )
-}
-
-export function renamePluginInConfigs(configs: TypedFlatConfigItem[], map: Record<string, string>): TypedFlatConfigItem[] {
-  return configs.map((i) => {
-    const clone = { ...i }
-    if (clone.rules)
-      clone.rules = renameRules(clone.rules, map)
-    if (clone.plugins) {
-      clone.plugins = Object.fromEntries(
-        Object.entries(clone.plugins)
-          .map(([key, value]) => {
-            if (key in map)
-              return [map[key], value]
-            return [key, value]
-          }),
-      )
-    }
-    return clone
-  })
+  );
 }
 
 export function toArray<T>(value: T | T[]): T[] {
-  return Array.isArray(value) ? value : [value]
+  return Array.isArray(value) ? value : [value];
 }
 
 export const parserPlain = {
   meta: {
-    name: 'parser-plain',
+    name: "parser-plain",
   },
   parseForESLint: (code: string) => ({
     ast: {
@@ -55,7 +56,7 @@ export const parserPlain = {
       loc: { end: code.length, start: 0 },
       range: [0, code.length],
       tokens: [],
-      type: 'Program',
+      type: "Program",
     },
     scopeManager: null,
     services: { isPlain: true },
@@ -63,4 +64,4 @@ export const parserPlain = {
       Program: [],
     },
   }),
-}
+};

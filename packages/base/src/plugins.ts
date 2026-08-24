@@ -1,14 +1,12 @@
-// @ts-nocheck
-
-export { default as pluginComments } from '@eslint-community/eslint-plugin-eslint-comments'
-export { default as pluginAntfu } from 'eslint-plugin-antfu'
-export { default as pluginCommand } from 'eslint-plugin-command'
-export { default as pluginImportLite } from 'eslint-plugin-import-lite'
-export { default as pluginJsdoc } from 'eslint-plugin-jsdoc'
-export { default as pluginJsonc } from 'eslint-plugin-jsonc'
-export { default as pluginNode } from 'eslint-plugin-n'
-export { default as pluginPerfectionist } from 'eslint-plugin-perfectionist'
-export { default as pluginRegexp } from 'eslint-plugin-regexp'
-export { default as pluginUnicorn } from 'eslint-plugin-unicorn'
-export { default as pluginUnusedImports } from 'eslint-plugin-unused-imports'
-export { default as pluginYaml } from 'eslint-plugin-yml'
+export { default as pluginComments } from "@eslint-community/eslint-plugin-eslint-comments";
+export { default as pluginAntfu } from "eslint-plugin-antfu";
+export { default as pluginCommand } from "eslint-plugin-command";
+export { default as pluginImportLite } from "eslint-plugin-import-lite";
+export { default as pluginJsdoc } from "eslint-plugin-jsdoc";
+export { default as pluginJsonc } from "eslint-plugin-jsonc";
+export { default as pluginNode } from "eslint-plugin-n";
+export { default as pluginPerfectionist } from "eslint-plugin-perfectionist";
+export { default as pluginRegexp } from "eslint-plugin-regexp";
+export { default as pluginUnicorn } from "eslint-plugin-unicorn";
+export { default as pluginUnusedImports } from "eslint-plugin-unused-imports";
+export { default as pluginYaml } from "eslint-plugin-yml";

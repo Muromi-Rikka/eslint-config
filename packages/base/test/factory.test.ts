@@ -1,120 +1,116 @@
-import type { OptionsConfig, TypedFlatConfigItem } from '../src/types'
-import { it } from 'vitest'
-import { renton } from '../src/factory'
+import { it } from "vitest";
+import type { OptionsConfig, TypedFlatConfigItem } from "../src/types";
+import { renton } from "../src/factory";
 
 interface Suite {
-  name: string
-  configs: OptionsConfig
+  configs: OptionsConfig;
+  name: string;
 }
 
 const suites: Suite[] = [
   {
-    name: 'default',
     configs: {},
+    name: "default",
   },
   {
-    name: 'no-typescript',
     configs: {
       typescript: false,
     },
+    name: "no-typescript",
   },
   {
-    name: 'no-stylistic',
     configs: {
       stylistic: false,
     },
+    name: "no-stylistic",
   },
   {
-    name: 'stylistic-custom',
     configs: {
       stylistic: {
         indent: 2,
-        quotes: 'single',
+        quotes: "single",
         semi: false,
       },
     },
+    name: "stylistic-custom",
   },
   {
-    name: 'no-jsonc',
     configs: {
       jsonc: false,
     },
+    name: "no-jsonc",
   },
   {
-    name: 'no-yaml',
     configs: {
       yaml: false,
     },
+    name: "no-yaml",
   },
   {
-    name: 'no-markdown',
     configs: {
       markdown: false,
     },
+    name: "no-markdown",
   },
   {
-    name: 'no-jsdoc',
     configs: {
       jsdoc: false,
     },
+    name: "no-jsdoc",
   },
   {
-    name: 'lib',
     configs: {
       typeAware: false,
     },
+    name: "lib",
   },
-]
+];
 
-const ignoreConfigs: string[] = [
-  'renton/gitignore',
-  'renton/ignores',
-  'renton/javascript/setup',
-]
+const ignoreConfigs: Set<string> = new Set([
+  "renton/gitignore",
+  "renton/ignores",
+  "renton/javascript/setup",
+]);
 
 function serializeConfigs(configs: TypedFlatConfigItem[]) {
   return configs.map((c) => {
-    if (c.name && ignoreConfigs.includes(c.name)) {
-      return '<ignored>'
+    if (c.name && ignoreConfigs.has(c.name)) {
+      return "<ignored>";
     }
-    const clone = { ...c } as any
+    const clone = { ...c } as any;
     if (c.plugins) {
-      clone.plugins = Object.keys(c.plugins)
+      clone.plugins = Object.keys(c.plugins);
     }
     if (c.languageOptions) {
-      if (c.languageOptions.parser) {
-        if (typeof c.languageOptions.parser !== 'string') {
-          clone.languageOptions.parser = (c.languageOptions.parser as any).meta?.name ?? (c.languageOptions.parser as any).name ?? 'unknown'
-        }
+      if (c.languageOptions.parser && typeof c.languageOptions.parser !== "string") {
+        clone.languageOptions.parser = (c.languageOptions.parser as any).meta?.name ?? (c.languageOptions.parser as any).name ?? "unknown";
       }
-      delete clone.languageOptions.globals
+      delete clone.languageOptions.globals;
       if (c.languageOptions.parserOptions) {
-        delete clone.languageOptions.parserOptions.parser
-        delete clone.languageOptions.parserOptions.projectService
-        delete clone.languageOptions.parserOptions.tsconfigRootDir
+        delete clone.languageOptions.parserOptions.parser;
+        delete clone.languageOptions.parserOptions.projectService;
+        delete clone.languageOptions.parserOptions.tsconfigRootDir;
       }
     }
-    if (c.processor) {
-      if (typeof c.processor !== 'string') {
-        clone.processor = (c.processor as any).meta?.name ?? 'unknown'
-      }
+    if (c.processor && typeof c.processor !== "string") {
+      clone.processor = (c.processor as any).meta?.name ?? "unknown";
     }
     if (c.rules) {
       clone.rules = Object.entries(c.rules)
         .map(([rule, value]) => {
-          if (value === 'off' || value === 0)
-            return `- ${rule}`
-          return rule
-        })
+          if (value === "off" || value === 0)
+            return `- ${rule}`;
+          return rule;
+        });
     }
-    return clone
-  })
+    return clone;
+  });
 }
 
-suites.forEach(({ name, configs }) => {
+for (const { configs, name } of suites) {
   it.concurrent(`factory ${name}`, async ({ expect }) => {
-    const config = await renton(configs)
+    const config = await renton(configs);
     await expect(serializeConfigs(config))
-      .toMatchFileSnapshot(`./__snapshots__/${name}.snap.js`)
-  })
-})
+      .toMatchFileSnapshot(`./__snapshots__/${name}.snap.js`);
+  });
+}

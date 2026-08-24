@@ -1,2 +1,2 @@
-export { rentonVue } from './factory'
-export type { OptionsVue } from './types'
+export { rentonVue } from "./factory";
+export type { OptionsVue } from "./types";

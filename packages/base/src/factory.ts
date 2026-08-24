@@ -1,26 +1,26 @@
-import type { OptionsConfig, TypedFlatConfigItem } from './types'
-import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { ignores } from './configs/ignores'
-import { javascript } from './configs/javascript'
-import { jsdoc } from './configs/jsdoc'
-import { jsonc } from './configs/jsonc'
-import { markdown } from './configs/markdown'
-import { node } from './configs/node'
-import { perfectionist } from './configs/perfectionist'
-import { regexp } from './configs/regexp'
-import { stylistic } from './configs/stylistic'
-import { typescript } from './configs/typescript'
-import { unicorn } from './configs/unicorn'
-import { yaml } from './configs/yaml'
-import { imports } from './configs/imports'
+import { FlatConfigComposer } from "eslint-flat-config-utils";
+import type { OptionsConfig, TypedFlatConfigItem } from "./types";
+import { ignores } from "./configs/ignores";
+import { imports } from "./configs/imports";
+import { javascript } from "./configs/javascript";
+import { jsdoc } from "./configs/jsdoc";
+import { jsonc } from "./configs/jsonc";
+import { markdown } from "./configs/markdown";
+import { node } from "./configs/node";
+import { perfectionist } from "./configs/perfectionist";
+import { regexp } from "./configs/regexp";
+import { stylistic } from "./configs/stylistic";
+import { typescript } from "./configs/typescript";
+import { unicorn } from "./configs/unicorn";
+import { yaml } from "./configs/yaml";
 
 export const PLUGIN_RENAMING: Record<string, string> = {
-  '@typescript-eslint': 'ts',
-  '@stylistic': 'style',
-  'import-lite': 'import',
-  'n': 'node',
-  'yml': 'yaml',
-}
+  "@stylistic": "style",
+  "@typescript-eslint": "ts",
+  "import-lite": "import",
+  "n": "node",
+  "yml": "yaml",
+};
 
 export async function renton(
   options: OptionsConfig & { overrides?: TypedFlatConfigItem[] } = {},
@@ -28,8 +28,8 @@ export async function renton(
 ): Promise<TypedFlatConfigItem[]> {
   const {
     gitignore = true,
-    jsonc: enableJsonc = true,
     jsdoc: enableJsdoc = true,
+    jsonc: enableJsonc = true,
     markdown: enableMarkdown = true,
     node: enableNode = true,
     overrides,
@@ -40,79 +40,81 @@ export async function renton(
     typescript: enableTypescript = true,
     unicorn: enableUnicorn = true,
     yaml: enableYaml = true,
-  } = options
+  } = options;
 
-  const stylisticOptions = typeof enableStylistic === 'object' ? enableStylistic : undefined
+  const stylisticOptions = typeof enableStylistic === "object" ? enableStylistic : undefined;
 
-  const configs: TypedFlatConfigItem[][] = []
+  const configs: TypedFlatConfigItem[][] = [];
 
-  configs.push(ignores())
+  // eslint-disable-next-line unicorn/no-immediate-mutation -- local array, not mutating external reference
+  configs.push(ignores());
 
   if (gitignore) {
-    const { default: gitignorePlugin } = await import('eslint-config-flat-gitignore')
+    const { default: gitignorePlugin } = await import("eslint-config-flat-gitignore");
     configs.push(
       Promise.resolve([
         {
           ...gitignorePlugin(),
-          name: 'renton/gitignore',
+          name: "renton/gitignore",
         },
       ] as TypedFlatConfigItem[]),
-    )
+    );
   }
 
-  configs.push(javascript())
-  configs.push(imports())
+  configs.push(javascript());
+  // eslint-disable-next-line unicorn/prefer-single-call -- conditional pushes cannot be combined
+  configs.push(imports());
 
   if (enableTypescript) {
     configs.push(typescript({
+      overrides: overrides?.find(c => c.name === "renton/typescript/rules")?.rules,
       typeAware,
-      overrides: overrides?.find(c => c.name === 'renton/typescript/rules')?.rules,
-    }))
+    }));
   }
 
   if (enableStylistic) {
-    configs.push(stylistic(stylisticOptions))
+    configs.push(stylistic(stylisticOptions));
   }
 
   if (enableNode) {
-    configs.push(node())
+    configs.push(node());
   }
 
   if (enableJsonc) {
-    configs.push(jsonc())
+    configs.push(jsonc());
   }
 
   if (enableYaml) {
-    configs.push(yaml())
+    configs.push(yaml());
   }
 
   if (enableMarkdown) {
-    configs.push(markdown())
+    configs.push(markdown());
   }
 
   if (enableJsdoc) {
-    configs.push(jsdoc())
+    configs.push(jsdoc());
   }
 
   if (enableRegexp) {
-    configs.push(regexp())
+    configs.push(regexp());
   }
 
   if (enableUnicorn) {
-    configs.push(unicorn())
+    configs.push(unicorn());
   }
 
   if (enablePerfectionist) {
-    configs.push(perfectionist())
+    configs.push(perfectionist());
   }
 
-  const composer = new FlatConfigComposer<TypedFlatConfigItem, string>(...configs)
+  const composer = new FlatConfigComposer<TypedFlatConfigItem, string>(...configs);
 
-  composer.renamePlugins(PLUGIN_RENAMING)
+  composer.renamePlugins(PLUGIN_RENAMING);
 
   if (userConfigs.length > 0) {
-    composer.append(...userConfigs)
+    composer.append(...userConfigs);
   }
 
-  return composer.toConfigs()
+  return composer.toConfigs();
 }

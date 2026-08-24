@@ -1,12 +1,12 @@
-import type { OptionsConfig, TypedFlatConfigItem } from '@renton/eslint-config'
+import type { OptionsConfig } from "@renton/eslint-config";
 
 export interface OptionsVue extends OptionsConfig {
-  vue?: boolean
-  vueVersion?: 2 | 3
-  vueI18n?: boolean
-  vueI18nLocaleDir?: string
-  tailwindcss?: boolean
-  tailwindcssConfigPath?: string
+  tailwindcss?: boolean;
+  tailwindcssConfigPath?: string;
+  vue?: boolean;
+  vueI18n?: boolean;
+  vueI18nLocaleDir?: string;
+  vueVersion?: 2 | 3;
 }
 
-export type { TypedFlatConfigItem }
+export { type TypedFlatConfigItem } from "@renton/eslint-config";

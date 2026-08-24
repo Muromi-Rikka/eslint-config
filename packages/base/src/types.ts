@@ -1,37 +1,37 @@
-import type { Linter } from 'eslint'
-import type { ConfigWithExtends } from 'eslint-flat-config-utils'
+import type { Linter } from "eslint";
+import type { ConfigWithExtends } from "eslint-flat-config-utils";
 
-export type Awaitable<T> = T | Promise<T>
-
-export type Rules = Record<string, Linter.RuleEntry<any> | undefined>
-
-export type TypedFlatConfigItem = Omit<ConfigWithExtends, 'plugins' | 'rules'> & {
-  plugins?: Record<string, any>
-  rules?: Rules
-}
-
-export interface StylisticOptions {
-  indent?: number | 'tab'
-  quotes?: 'single' | 'double'
-  semi?: boolean
-  braceStyle?: '1tbs' | 'stroustrup' | 'allman'
-}
+export type Awaitable<T> = Promise<T> | T;
 
 export interface OptionsConfig {
-  typescript?: boolean
-  typeAware?: boolean
-  stylistic?: boolean | StylisticOptions
-  jsonc?: boolean
-  yaml?: boolean
-  markdown?: boolean
-  jsdoc?: boolean
-  node?: boolean
-  regexp?: boolean
-  unicorn?: boolean
-  perfectionist?: boolean
-  gitignore?: boolean
+  gitignore?: boolean;
+  jsdoc?: boolean;
+  jsonc?: boolean;
+  markdown?: boolean;
+  node?: boolean;
+  perfectionist?: boolean;
+  regexp?: boolean;
+  stylistic?: boolean | StylisticOptions;
+  typeAware?: boolean;
+  typescript?: boolean;
+  unicorn?: boolean;
+  yaml?: boolean;
 }
 
 export interface OptionsOverrides {
-  overrides?: Rules
+  overrides?: Rules;
 }
+
+export type Rules = Record<string, Linter.RuleEntry<any> | undefined>;
+
+export interface StylisticOptions {
+  braceStyle?: "1tbs" | "allman" | "stroustrup";
+  indent?: "tab" | number;
+  quotes?: "double" | "single";
+  semi?: boolean;
+}
+
+export type TypedFlatConfigItem = Omit<ConfigWithExtends, "plugins" | "rules"> & {
+  plugins?: Record<string, any>;
+  rules?: Rules;
+};

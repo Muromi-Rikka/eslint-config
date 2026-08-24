@@ -3,6 +3,9 @@
   "<ignored>",
   "<ignored>",
   {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
     "name": "renton/javascript/rules",
     "plugins": [
       "antfu",
@@ -120,6 +123,9 @@
     ],
   },
   {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
     "name": "renton/imports/rules",
     "plugins": [
       "antfu",
@@ -202,6 +208,9 @@
     ],
   },
   {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
     "name": "renton/stylistic/rules",
     "plugins": [
       "antfu",
@@ -281,6 +290,9 @@
     ],
   },
   {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
     "name": "renton/node/rules",
     "plugins": [
       "node",
@@ -300,6 +312,7 @@
       "**/*.json5",
       "**/*.jsonc",
     ],
+    "language": "jsonc/x",
     "name": "renton/jsonc/rules",
     "plugins": [
       "jsonc",
@@ -311,7 +324,7 @@
       "jsonc/no-dupe-keys",
       "jsonc/no-escape-sequence-in-identifier",
       "jsonc/no-number-props",
-      "jsonc/no-numeric-separator-in-literals",
+      "jsonc/no-numeric-separators",
       "jsonc/no-parenthesized",
       "jsonc/no-plus-sign",
       "jsonc/no-regexp-literals",
@@ -329,6 +342,7 @@
     "files": [
       "**/*.y?(a)ml",
     ],
+    "language": "yaml/yaml",
     "name": "renton/yaml/rules",
     "plugins": [
       "yaml",
@@ -341,9 +355,6 @@
       "yaml/no-empty-mapping-value",
       "yaml/no-empty-sequence-entry",
       "yaml/no-irregular-whitespace",
-      "yaml/no-multiple-anchors",
-      "yaml/no-null-key",
-      "yaml/no-null-value",
       "yaml/no-tab-indent",
       "yaml/plain-scalar",
       "yaml/vue-custom-block/no-parsing-error",
@@ -368,6 +379,9 @@
     "name": "renton/markdown/parser",
   },
   {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
     "name": "renton/regexp/rules",
     "plugins": [
       "regexp",
@@ -443,6 +457,9 @@
     ],
   },
   {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
     "name": "renton/unicorn/rules",
     "plugins": [
       "unicorn",
@@ -795,6 +812,9 @@
     ],
   },
   {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
     "name": "renton/perfectionist/rules",
     "plugins": [
       "perfectionist",
@@ -809,8 +829,8 @@
       "perfectionist/sort-heritage-clauses",
       "perfectionist/sort-import-attributes",
       "perfectionist/sort-imports",
-      "perfectionist/sort-intersection-types",
       "perfectionist/sort-interfaces",
+      "perfectionist/sort-intersection-types",
       "perfectionist/sort-maps",
       "perfectionist/sort-modules",
       "perfectionist/sort-named-exports",

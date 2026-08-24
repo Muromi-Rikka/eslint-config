@@ -1,24 +1,24 @@
-import type { OptionsOverrides, TypedFlatConfigItem } from '@renton/eslint-config'
-import { interopDefault } from '@renton/eslint-config/utils'
+import type { OptionsOverrides, TypedFlatConfigItem } from "@renton/eslint-config";
+import { interopDefault } from "@renton/eslint-config/utils";
 
 export interface OptionsTailwindcssConfig extends OptionsOverrides {
-  cssConfigPath: string
+  cssConfigPath: string;
 }
 
 export async function tailwindcss(options: OptionsTailwindcssConfig): Promise<TypedFlatConfigItem[]> {
   const {
     cssConfigPath,
     overrides = {},
-  } = options
+  } = options;
 
-  const pluginTailwindcss = await interopDefault(import('eslint-plugin-tailwindcss'))
+  const pluginTailwindcss = await interopDefault(import("eslint-plugin-tailwindcss"));
 
-  const recommendedConfig = pluginTailwindcss.configs.recommended as TypedFlatConfigItem
+  const recommendedConfig = pluginTailwindcss.configs.recommended as TypedFlatConfigItem;
 
   return [
     {
       ...recommendedConfig,
-      name: 'renton/tailwindcss/setup',
+      name: "renton/tailwindcss/setup",
       settings: {
         ...recommendedConfig.settings,
         tailwindcss: {
@@ -28,10 +28,10 @@ export async function tailwindcss(options: OptionsTailwindcssConfig): Promise<Ty
       },
     },
     {
-      name: 'renton/tailwindcss/rules',
+      name: "renton/tailwindcss/rules",
       rules: {
         ...overrides,
       },
     },
-  ]
+  ];
 }
