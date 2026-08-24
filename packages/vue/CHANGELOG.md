@@ -1,5 +1,17 @@
 # @renton/eslint-config-vue
 
+## 0.1.2
+
+### Patch Changes
+
+- [`3406684`](https://github.com/Muromi-Rikka/eslint-config/commit/34066840091a987b58c886ca64e83297943e5208) Thanks [@Muromi-Rikka](https://github.com/Muromi-Rikka)! - Release v0.1.1
+  
+  - Enhanced package.json metadata and added MIT license to all packages
+  - Updated test snapshots for pnpm plugin rules
+- Updated dependencies [[`3406684`](https://github.com/Muromi-Rikka/eslint-config/commit/34066840091a987b58c886ca64e83297943e5208)]:
+  - @renton/eslint-config@0.1.2
+  - @renton/eslint-config-frontend@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

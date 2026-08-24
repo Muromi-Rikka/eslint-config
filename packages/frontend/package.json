@@ -1,6 +1,6 @@
 {
   "name": "@renton/eslint-config-frontend",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ESLint configuration for frontend projects with Tailwind CSS support",
   "author": "Rikka <admin@rikka.cc>",
   "license": "MIT",
