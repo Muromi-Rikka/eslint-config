@@ -1,16 +1,7 @@
-import type { OptionsPnpm, TypedFlatConfigItem } from "../types";
-import fs from "node:fs/promises";
 import { findUp } from "find-up-simple";
+import fs from "node:fs/promises";
+import type { OptionsPnpm, TypedFlatConfigItem } from "../types";
 import { interopDefault } from "../utils";
-
-async function detectCatalogUsage(): Promise<boolean> {
-  const workspaceFile = await findUp("pnpm-workspace.yaml");
-  if (!workspaceFile)
-    return false;
-
-  const content = await fs.readFile(workspaceFile, "utf-8");
-  return content.includes("catalog:") || content.includes("catalogs:");
-}
 
 export async function pnpm(options: OptionsPnpm = {}): Promise<TypedFlatConfigItem[]> {
   const [
@@ -24,7 +15,7 @@ export async function pnpm(options: OptionsPnpm = {}): Promise<TypedFlatConfigIt
   ]);
 
   const {
-    catalogs = await detectCatalogUsage(),
+    catalogs = await hasCatalogUsage(),
     isInEditor = false,
     json = true,
     yaml = true,
@@ -46,16 +37,14 @@ export async function pnpm(options: OptionsPnpm = {}): Promise<TypedFlatConfigIt
         pnpm: pluginPnpm,
       },
       rules: {
-        ...(catalogs
-          ? {
-              "pnpm/json-enforce-catalog": [
-                "error",
-                {
-                  autofix: !isInEditor,
-                },
-              ],
-            }
-          : {}),
+        ...(catalogs && {
+          "pnpm/json-enforce-catalog": [
+            "error",
+            {
+              autofix: !isInEditor,
+            },
+          ],
+        }),
         "pnpm/json-prefer-workspace-settings": [
           "error",
           { autofix: !isInEditor },
@@ -91,4 +80,13 @@ export async function pnpm(options: OptionsPnpm = {}): Promise<TypedFlatConfigIt
   }
 
   return configs;
+}
+
+async function hasCatalogUsage(): Promise<boolean> {
+  const workspaceFile = await findUp("pnpm-workspace.yaml");
+  if (!workspaceFile)
+    return false;
+
+  const content = await fs.readFile(workspaceFile, "utf8");
+  return content.includes("catalog:") || content.includes("catalogs:");
 }

@@ -1,2 +1,5 @@
+
+shellEmulator: true
+
 packages:
   - packages/*

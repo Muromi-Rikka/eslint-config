@@ -15,7 +15,7 @@ import { stylistic } from "./configs/stylistic";
 import { typescript } from "./configs/typescript";
 import { unicorn } from "./configs/unicorn";
 import { yaml } from "./configs/yaml";
-import { isInEditorEnv } from "./utils";
+import { isInEditorEnv as isInEditorEnvironment } from "./utils";
 
 export const PLUGIN_RENAMING: Record<string, string> = {
   "@stylistic": "style",
@@ -47,7 +47,7 @@ export async function renton(
   } = options;
 
   const stylisticOptions = typeof enableStylistic === "object" ? enableStylistic : undefined;
-  const isInEditor = isInEditorEnv();
+  const isInEditor = isInEditorEnvironment();
 
   const configs: Promise<TypedFlatConfigItem[]>[] = [];
 

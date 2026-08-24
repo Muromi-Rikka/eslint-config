@@ -19,6 +19,10 @@ export interface OptionsConfig {
   yaml?: boolean;
 }
 
+export interface OptionsOverrides {
+  overrides?: Rules;
+}
+
 export interface OptionsPnpm {
   /**
    * Requires catalogs usage.
@@ -27,26 +31,25 @@ export interface OptionsPnpm {
   catalogs?: boolean;
 
   /**
+   * Whether running in an editor.
+   *
+   * @default false
+   */
+  isInEditor?: boolean;
+
+  /**
    * Enable linting for package.json.
+   *
    * @default true
    */
   json?: boolean;
 
   /**
    * Enable linting for pnpm-workspace.yaml.
+   *
    * @default true
    */
   yaml?: boolean;
-
-  /**
-   * Whether running in an editor.
-   * @default false
-   */
-  isInEditor?: boolean;
-}
-
-export interface OptionsOverrides {
-  overrides?: Rules;
 }
 
 export type Rules = Record<string, Linter.RuleEntry<any> | undefined>;

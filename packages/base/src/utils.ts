@@ -6,6 +6,15 @@ export async function interopDefault<T>(m: Awaitable<T>): Promise<T extends { de
   return (resolved as any).default || resolved;
 }
 
+export function isInEditorEnv(): boolean {
+  if (process.env.CI)
+    return false;
+  if (process.env.GIT_EXEC_PATH)
+    return false;
+  return !!(process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM || process.env.NVIM || process.env.KATE_PID
+  );
+}
+
 export function renamePluginInConfigs(configs: TypedFlatConfigItem[], map: Record<string, string>): TypedFlatConfigItem[] {
   return configs.map((index) => {
     const clone = { ...index };
@@ -43,21 +52,6 @@ export function renameRules(
 
 export function toArray<T>(value: T | T[]): T[] {
   return Array.isArray(value) ? value : [value];
-}
-
-export function isInEditorEnv(): boolean {
-  if (process.env.CI)
-    return false;
-  if (process.env.GIT_EXEC_PATH)
-    return false;
-  return !!(false
-    || process.env.VSCODE_PID
-    || process.env.VSCODE_CWD
-    || process.env.JETBRAINS_IDE
-    || process.env.VIM
-    || process.env.NVIM
-    || process.env.KATE_PID
-  );
 }
 
 export const parserPlain = {
