@@ -11,9 +11,9 @@
     "test:run": "vitest run"
   },
   "devDependencies": {
-    "tsdown": "^0.22.14",
     "tinyexec": "^1.0.0",
     "tinyglobby": "^0.2.14",
+    "tsdown": "^0.22.14",
     "typescript": "^6.0.3",
     "vitest": "^3.2.1"
   }

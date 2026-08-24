@@ -26,6 +26,12 @@ const suites: Suite[] = [
       tailwindcssConfigPath: 'src/app.css',
     },
   },
+  {
+    name: 'with-vue-i18n',
+    configs: {
+      vueI18n: true,
+    },
+  },
 ]
 
 const ignoreConfigs: string[] = [
