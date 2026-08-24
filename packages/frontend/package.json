@@ -20,12 +20,12 @@
   },
   "dependencies": {
     "@renton/eslint-config": "workspace:*",
-    "eslint-plugin-tailwindcss": "^4.0.0"
+    "eslint-plugin-tailwindcss": "catalog:plugins"
   },
   "devDependencies": {
-    "eslint": "^10.9.0",
-    "tsdown": "^0.22.14",
-    "typescript": "^6.0.3"
+    "eslint": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "@renton/eslint-config": "workspace:*",

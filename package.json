@@ -14,15 +14,15 @@
     "test:run": "vitest run"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^1.0.0",
-    "@changesets/cli": "^3.0.1",
+    "@changesets/changelog-github": "catalog:dev",
+    "@changesets/cli": "catalog:dev",
     "@renton/eslint-config": "workspace:*",
-    "@types/node": "^26.2.0",
-    "eslint": "^10.9.0",
-    "tinyexec": "^1.0.0",
-    "tinyglobby": "^0.2.14",
-    "tsdown": "^0.22.14",
-    "typescript": "^6.0.3",
-    "vitest": "^3.2.1"
+    "@types/node": "catalog:dev",
+    "eslint": "catalog:",
+    "tinyexec": "catalog:dev",
+    "tinyglobby": "catalog:dev",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:dev"
   }
 }
