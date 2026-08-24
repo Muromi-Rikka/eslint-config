@@ -8,11 +8,14 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:packages": "pnpm -r run lint",
-    "release": "pnpm -r run release",
+    "changeset": "changeset",
+    "release": "changeset publish",
     "test": "vitest",
     "test:run": "vitest run"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^1.0.0",
+    "@changesets/cli": "^3.0.1",
     "@renton/eslint-config": "workspace:*",
     "eslint": "^10.9.0",
     "tinyexec": "^1.0.0",
