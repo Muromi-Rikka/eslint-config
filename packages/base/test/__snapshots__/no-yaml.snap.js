@@ -340,6 +340,23 @@
   },
   {
     "files": [
+      "package.json",
+      "**/package.json",
+    ],
+    "languageOptions": {
+      "parser": "jsonc-eslint-parser",
+    },
+    "name": "renton/pnpm/package-json",
+    "plugins": [
+      "pnpm",
+    ],
+    "rules": [
+      "pnpm/json-prefer-workspace-settings",
+      "pnpm/json-valid-catalog",
+    ],
+  },
+  {
+    "files": [
       "**/*.md",
     ],
     "name": "renton/markdown/setup",

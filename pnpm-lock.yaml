@@ -80,6 +80,9 @@ importers:
       eslint-plugin-perfectionist:
         specifier: ^5.10.1
         version: 5.10.1(eslint@10.9.0(jiti@2.7.0))(typescript@6.0.3)
+      eslint-plugin-pnpm:
+        specifier: ^1.8.0
+        version: 1.8.0(eslint@10.9.0(jiti@2.7.0))
       eslint-plugin-regexp:
         specifier: ^3.2.0
         version: 3.2.0(eslint@10.9.0(jiti@2.7.0))
@@ -92,15 +95,24 @@ importers:
       eslint-plugin-yml:
         specifier: ^3.8.1
         version: 3.8.1(eslint@10.9.0(jiti@2.7.0))
+      find-up-simple:
+        specifier: ^1.0.1
+        version: 1.0.1
       globals:
         specifier: ^17.11.0
         version: 17.11.0
+      jsonc-eslint-parser:
+        specifier: ^3.3.0
+        version: 3.3.0
       local-pkg:
         specifier: ^1.2.1
         version: 1.2.1
       typescript-eslint:
         specifier: ^8.67.0
         version: 8.67.0(eslint@10.9.0(jiti@2.7.0))(typescript@6.0.3)
+      yaml-eslint-parser:
+        specifier: ^2.1.0
+        version: 2.1.0
     devDependencies:
       eslint:
         specifier: ^10.9.0
@@ -1604,6 +1616,11 @@ packages:
     peerDependencies:
       eslint: ^8.45.0 || ^9.0.0 || ^10.0.0
 
+  eslint-plugin-pnpm@1.8.0:
+    resolution: {integrity: sha512-qdDaMJGYP1RmMF7DehgxrGh0oRlhoolIVTLjLMOvCzGNkyrABXGmcTsbQe4uYQTR0uOiQ2QK4e6i8fSmdrnZdQ==}
+    peerDependencies:
+      eslint: ^9.0.0 || ^10.0.0
+
   eslint-plugin-react-dom@5.18.6:
     resolution: {integrity: sha512-xco47I0Agu+83QH2ONbgZd1JPLSXJON+gtFGJbOhgfPvetfO7UkcHu8iLpncopwyWekAXfhvomJsDlNLTm26/g==}
     engines: {node: '>=22.0.0'}
@@ -2335,6 +2352,9 @@ packages:
   pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
+
+  pnpm-workspace-yaml@1.8.0:
+    resolution: {integrity: sha512-rqGldoFOzjalWzlPtzAi/RcjAyep+Pjl4QUKJ6/oEZXzhVAX79GS/i8gjhQT715g75kTkyfHjL9eBPGZ9Co++Q==}
 
   postcss-nested@7.0.2:
     resolution: {integrity: sha512-5osppouFc0VR9/VYzYxO03VaDa3e8F23Kfd6/9qcZTUI8P58GIYlArOET2Wq0ywSl2o2PjELhYOFI4W7l5QHKw==}
@@ -4176,6 +4196,20 @@ snapshots:
       - supports-color
       - typescript
 
+  eslint-plugin-pnpm@1.8.0(eslint@10.9.0(jiti@2.7.0)):
+    dependencies:
+      empathic: 2.0.1
+      eslint: 10.9.0(jiti@2.7.0)
+      eslint-json-compat-utils: 0.2.3(eslint@10.9.0(jiti@2.7.0))(jsonc-eslint-parser@3.3.0)
+      jsonc-eslint-parser: 3.3.0
+      pathe: 2.0.3
+      pnpm-workspace-yaml: 1.8.0
+      tinyglobby: 0.2.17
+      yaml: 2.9.0
+      yaml-eslint-parser: 2.1.0
+    transitivePeerDependencies:
+      - '@eslint/json'
+
   eslint-plugin-react-dom@5.18.6(eslint@10.9.0(jiti@2.7.0))(typescript@6.0.3):
     dependencies:
       '@eslint-react/ast': 5.18.6(eslint@10.9.0(jiti@2.7.0))(typescript@6.0.3)
@@ -5165,6 +5199,10 @@ snapshots:
       pathe: 2.0.3
 
   pluralize@8.0.0: {}
+
+  pnpm-workspace-yaml@1.8.0:
+    dependencies:
+      yaml: 2.9.0
 
   postcss-nested@7.0.2(postcss@8.5.26):
     dependencies:

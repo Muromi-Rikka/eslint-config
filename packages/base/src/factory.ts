@@ -1,4 +1,5 @@
 import { FlatConfigComposer } from "eslint-flat-config-utils";
+import { findUpSync } from "find-up-simple";
 import type { OptionsConfig, TypedFlatConfigItem } from "./types";
 import { ignores } from "./configs/ignores";
 import { imports } from "./configs/imports";
@@ -8,11 +9,13 @@ import { jsonc } from "./configs/jsonc";
 import { markdown } from "./configs/markdown";
 import { node } from "./configs/node";
 import { perfectionist } from "./configs/perfectionist";
+import { pnpm } from "./configs/pnpm";
 import { regexp } from "./configs/regexp";
 import { stylistic } from "./configs/stylistic";
 import { typescript } from "./configs/typescript";
 import { unicorn } from "./configs/unicorn";
 import { yaml } from "./configs/yaml";
+import { isInEditorEnv } from "./utils";
 
 export const PLUGIN_RENAMING: Record<string, string> = {
   "@stylistic": "style",
@@ -34,6 +37,7 @@ export async function renton(
     node: enableNode = true,
     overrides,
     perfectionist: enablePerfectionist = true,
+    pnpm: enablePnpm = !!findUpSync("pnpm-workspace.yaml"),
     regexp: enableRegexp = true,
     stylistic: enableStylistic = true,
     typeAware = false,
@@ -43,6 +47,7 @@ export async function renton(
   } = options;
 
   const stylisticOptions = typeof enableStylistic === "object" ? enableStylistic : undefined;
+  const isInEditor = isInEditorEnv();
 
   const configs: Promise<TypedFlatConfigItem[]>[] = [];
 
@@ -84,6 +89,16 @@ export async function renton(
 
   if (enableYaml) {
     configs.push(yaml());
+  }
+
+  if (enablePnpm) {
+    const optionsPnpm = typeof enablePnpm === "object" ? enablePnpm : {};
+    configs.push(pnpm({
+      isInEditor,
+      json: enableJsonc,
+      yaml: enableYaml,
+      ...optionsPnpm,
+    }));
   }
 
   if (enableMarkdown) {

@@ -298,6 +298,40 @@
   },
   {
     "files": [
+      "package.json",
+      "**/package.json",
+    ],
+    "languageOptions": {
+      "parser": "jsonc-eslint-parser",
+    },
+    "name": "renton/pnpm/package-json",
+    "plugins": [
+      "pnpm",
+    ],
+    "rules": [
+      "pnpm/json-prefer-workspace-settings",
+      "pnpm/json-valid-catalog",
+    ],
+  },
+  {
+    "files": [
+      "pnpm-workspace.yaml",
+    ],
+    "languageOptions": {
+      "parser": "yaml-eslint-parser",
+    },
+    "name": "renton/pnpm/pnpm-workspace-yaml",
+    "plugins": [
+      "pnpm",
+    ],
+    "rules": [
+      "pnpm/yaml-enforce-settings",
+      "pnpm/yaml-no-duplicate-catalog-item",
+      "pnpm/yaml-no-unused-catalog-item",
+    ],
+  },
+  {
+    "files": [
       "**/*.md",
     ],
     "name": "renton/markdown/setup",

@@ -330,6 +330,23 @@
   },
   {
     "files": [
+      "pnpm-workspace.yaml",
+    ],
+    "languageOptions": {
+      "parser": "yaml-eslint-parser",
+    },
+    "name": "renton/pnpm/pnpm-workspace-yaml",
+    "plugins": [
+      "pnpm",
+    ],
+    "rules": [
+      "pnpm/yaml-enforce-settings",
+      "pnpm/yaml-no-duplicate-catalog-item",
+      "pnpm/yaml-no-unused-catalog-item",
+    ],
+  },
+  {
+    "files": [
       "**/*.md",
     ],
     "name": "renton/markdown/setup",
