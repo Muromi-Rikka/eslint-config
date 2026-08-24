@@ -5,8 +5,8 @@ import { interopDefault } from '../utils'
 const defaults: Required<StylisticOptions> = {
   braceStyle: 'stroustrup',
   indent: 2,
-  quotes: 'single',
-  semi: false,
+  quotes: 'double',
+  semi: true,
 }
 
 export async function stylistic(options: StylisticOptions = {}): Promise<TypedFlatConfigItem[]> {
