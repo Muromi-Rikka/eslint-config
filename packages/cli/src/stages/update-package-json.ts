@@ -24,7 +24,7 @@ export async function updatePackageJson(result: PromptResult): Promise<void> {
 
   const addedPackages: string[] = [];
 
-  function addDependencies(dependencies: (string | undefined)[]): void {
+  function addDependencies(dependencies: readonly (string | undefined)[]): void {
     for (const dependency of dependencies) {
       if (!dependency)
         continue;

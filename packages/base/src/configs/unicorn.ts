@@ -1,4 +1,4 @@
-import type { OptionsOverrides, TypedFlatConfigItem } from "../types";
+import type { OptionsOverrides, Rules, TypedFlatConfigItem } from "../types";
 import { GLOB_SRC } from "../globs";
 import { interopDefault } from "../utils";
 
@@ -32,7 +32,7 @@ export async function unicorn(options: OptionsOverrides = {}): Promise<TypedFlat
         "unicorn/prevent-abbreviations": "off",
 
         ...overrides,
-      },
+      } as Rules,
     },
   ];
 }

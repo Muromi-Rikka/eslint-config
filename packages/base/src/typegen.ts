@@ -15836,15 +15836,9 @@ type TestValidExpect = []|[{
 }]
 // ----- test/valid-title -----
 type TestValidTitle = []|[{
-  
   ignoreTypeOfDescribeName?: boolean
-  
   allowArguments?: boolean
-  
   disallowedWords?: string[]
-  [k: string]: (string | [string]|[string, string] | {
-    [k: string]: (string | [string]|[string, string]) | undefined
-  })
 }]
 // ----- ts/array-type -----
 type TsArrayType = []|[{
@@ -17329,9 +17323,6 @@ type UnicornNameReplacements = []|[{
 type _UnicornNameReplacementsReplacements = (false | _UnicornNameReplacements_BooleanObject) | undefined
 interface _UnicornNameReplacements_NameReplacements {
   [k: string]: _UnicornNameReplacementsReplacements | undefined
-}
-interface _UnicornNameReplacements_BooleanObject {
-  [k: string]: boolean | undefined
 }
 interface _UnicornNameReplacements_BooleanObject {
   [k: string]: boolean | undefined

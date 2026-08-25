@@ -1,5 +1,5 @@
-import { isPackageInScope } from "local-pkg";
-import type { OptionsFormatters, StylisticOptions, TypedFlatConfigItem, VendoredPrettierOptions } from "../types";
+import { isPackageExists } from "local-pkg";
+import type { OptionsFormatters, Rules, StylisticOptions, TypedFlatConfigItem, VendoredPrettierOptions } from "../types";
 import type { VendoredPrettierRuleOptions } from "../vender/prettier-types";
 import { GLOB_ASTRO, GLOB_CSS, GLOB_GRAPHQL, GLOB_HTML, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS, GLOB_SVG, GLOB_XML } from "../globs";
 import { ensurePackages, interopDefault, parserPlain } from "../utils";
@@ -16,9 +16,9 @@ export async function formatters(
   stylistic: StylisticOptions = {},
 ): Promise<TypedFlatConfigItem[]> {
   if (options === true) {
-    const isPrettierPluginXmlInScope = isPackageInScope("@prettier/plugin-xml");
+    const isPrettierPluginXmlInScope = isPackageExists("@prettier/plugin-xml");
     options = {
-      astro: isPackageInScope("prettier-plugin-astro"),
+      astro: isPackageExists("prettier-plugin-astro"),
       css: true,
       graphql: true,
       html: true,
@@ -97,7 +97,7 @@ export async function formatters(
               parser: "css",
             }),
           ],
-        },
+        } as Rules,
       },
       {
         files: [GLOB_SCSS],
@@ -112,7 +112,7 @@ export async function formatters(
               parser: "scss",
             }),
           ],
-        },
+        } as Rules,
       },
       {
         files: [GLOB_LESS],
@@ -127,7 +127,7 @@ export async function formatters(
               parser: "less",
             }),
           ],
-        },
+        } as Rules,
       },
     );
   }
@@ -146,7 +146,7 @@ export async function formatters(
             parser: "html",
           }),
         ],
-      },
+      } as Rules,
     });
   }
 
@@ -167,7 +167,7 @@ export async function formatters(
             ],
           }),
         ],
-      },
+      } as Rules,
     });
   }
 
@@ -188,7 +188,7 @@ export async function formatters(
             ],
           }),
         ],
-      },
+      } as Rules,
     });
   }
 
@@ -216,7 +216,7 @@ export async function formatters(
                 language: "markdown",
               },
         ],
-      },
+      } as Rules,
     });
   }
 
@@ -237,7 +237,7 @@ export async function formatters(
             ],
           }),
         ],
-      },
+      } as Rules,
     }, {
       files: [GLOB_ASTRO],
       name: "renton/formatter/astro/disables",
@@ -267,7 +267,7 @@ export async function formatters(
             parser: "graphql",
           }),
         ],
-      },
+      } as Rules,
     });
   }
 

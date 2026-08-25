@@ -1,4 +1,4 @@
-import type { OptionsOverrides, TypedFlatConfigItem } from "../types";
+import type { OptionsOverrides, Rules, TypedFlatConfigItem } from "../types";
 import { GLOB_TS, GLOB_TSX } from "../globs";
 import { interopDefault } from "../utils";
 
@@ -18,7 +18,7 @@ export async function typescript(options: OptionsTypescript = {}): Promise<Typed
 
   const files = [GLOB_TS, GLOB_TSX];
 
-  const typeAwareRules: TypedFlatConfigItem["rules"] = {
+  const typeAwareRules = {
     "dot-notation": "off",
     "no-implied-eval": "off",
     "no-throw-literal": "off",
@@ -38,7 +38,7 @@ export async function typescript(options: OptionsTypescript = {}): Promise<Typed
     "ts/restrict-plus-operands": ["error", { allowAny: false, allowBoolean: false, allowNullish: false, allowNumberAndString: false, allowRegExp: false }],
     "ts/restrict-template-expressions": ["error", { allowAny: false, allowBoolean: false, allowNullish: false, allowNumber: true }],
     "ts/unbound-method": "error",
-  };
+  } as Rules;
 
   return [
     {

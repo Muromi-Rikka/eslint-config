@@ -26,7 +26,7 @@ export async function jsx(options: OptionsJSX = {}): Promise<TypedFlatConfigItem
   }
 
   await ensurePackages(["eslint-plugin-jsx-a11y"]);
-  const jsxA11yPlugin = await interopDefault(import("eslint-plugin-jsx-a11y"));
+  const jsxA11yPlugin = await interopDefault(import("eslint-plugin-jsx-a11y" as string));
   const a11yConfig = jsxA11yPlugin.flatConfigs.recommended;
 
   const a11yRules = {

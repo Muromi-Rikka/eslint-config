@@ -6,6 +6,7 @@ import { interopDefault } from "../utils";
 const defaults: Required<StylisticOptions> = {
   braceStyle: "stroustrup",
   indent: 2,
+  jsx: true,
   quotes: "double",
   semi: true,
 };

@@ -1,4 +1,3 @@
-// @ts-expect-error -- subpath may lack type declarations
 import pluginComments from "@eslint-community/eslint-plugin-eslint-comments";
 
 import type { TypedFlatConfigItem } from "../types";
