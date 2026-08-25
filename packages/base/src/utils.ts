@@ -1,6 +1,8 @@
 /* eslint-disable unicorn/name-replacements -- utils.ts is a conventional name */
 import type { Awaitable, TypedFlatConfigItem } from "./types";
 
+import { isPackageExists } from "local-pkg";
+
 export async function interopDefault<T>(m: Awaitable<T>): Promise<T extends { default: infer U } ? U : T> {
   const resolved = await m;
   return (resolved as any).default || resolved;
@@ -74,3 +76,31 @@ export const parserPlain = {
     },
   }),
 };
+
+export function isPackageInScope(name: string): boolean {
+  return isPackageExists(name);
+}
+
+export async function ensurePackages(packages: (string | undefined)[]): Promise<void> {
+  if (process.env.CI || process.stdout.isTTY === false)
+    return;
+
+  const nonExistingPackages = packages.filter(i => i && !isPackageInScope(i)) as string[];
+  if (nonExistingPackages.length === 0)
+    return;
+
+  // Try to use @clack/prompts if available, otherwise just warn
+  try {
+    const p = await import("@clack/prompts");
+    const result = await p.confirm({
+      message: `${nonExistingPackages.length === 1 ? "Package is" : "Packages are"} required for this config: ${nonExistingPackages.join(", ")}. Do you want to install them?`,
+    });
+    if (result) {
+      const { installPackage } = await import("@antfu/install-pkg");
+      await installPackage(nonExistingPackages, { dev: true });
+    }
+  }
+  catch {
+    console.warn(`[renton] Missing packages: ${nonExistingPackages.join(", ")}. Please install them manually.`);
+  }
+}

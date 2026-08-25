@@ -1,0 +1,42 @@
+{
+  "name": "@renton/eslint-config-cli",
+  "version": "0.1.0",
+  "description": "CLI for @renton/eslint-config setup",
+  "author": "Rikka <admin@rikka.cc>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muromi-Rikka/eslint-config.git",
+    "directory": "packages/cli"
+  },
+  "type": "module",
+  "bin": {
+    "renton-eslint": "./dist/index.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@antfu/install-pkg": "catalog:dev",
+    "@clack/prompts": "catalog:dev",
+    "@renton/eslint-config": "workspace:*",
+    "ansis": "catalog:dev",
+    "cac": "catalog:dev"
+  },
+  "devDependencies": {
+    "eslint": "catalog:",
+    "tsdown": "catalog:",
+    "tsx": "catalog:dev",
+    "typescript": "catalog:"
+  }
+}
