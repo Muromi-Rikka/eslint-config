@@ -3,6 +3,7 @@
 import type { Linter } from 'eslint'
 
 export interface Rules {
+  [k: string]: Linter.RuleEntry<any> | undefined
   /**
    * Enforce getter and setter pairs in objects and classes
    * @see https://eslint.org/docs/latest/rules/accessor-pairs

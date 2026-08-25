@@ -65,6 +65,13 @@ dts = dts.replaceAll(
 `,
 );
 
+// Add index signature to Rules interface for compatibility with Linter.Config
+dts = dts.replace(
+  /export interface Rules \{/,
+  `export interface Rules {
+  [k: string]: Linter.RuleEntry<any> | undefined`,
+);
+
 dts += `
 // Names of all the configs
 export type ConfigNames = ${configNames.map(index => `'${index}'`).join(" | ")}
