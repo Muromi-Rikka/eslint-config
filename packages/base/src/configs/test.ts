@@ -44,16 +44,14 @@ export async function test(
       files,
       name: "renton/test/rules",
       rules: {
+        // Disables
         "antfu/no-top-level-await": "off",
         "no-unused-expressions": "off",
+
         "test/consistent-test-it": ["error", { fn: "it", withinDescribe: "it" }],
         "test/no-identical-title": "error",
-
         "test/no-import-node-test": "error",
         "test/no-only-tests": isInEditor ? "warn" : "error",
-
-        // Disables
-
         "test/prefer-hooks-in-order": "error",
         "test/prefer-lowercase-title": "error",
         "ts/explicit-function-return-type": "off",
