@@ -1,16 +1,16 @@
-export interface PromItem<T> {
-  label: string;
-  value: T;
-  hint?: string;
-}
-
-export type FrameworkOption = "vue" | "react";
-
 export type ExtraLibrariesOption = "formatter";
 
+export type FrameworkOption = "react" | "vue";
+
+export interface PromItem<T> {
+  hint?: string;
+  label: string;
+  value: T;
+}
+
 export interface PromptResult {
-  uncommittedConfirmed: boolean;
-  frameworks: FrameworkOption[];
   extra: ExtraLibrariesOption[];
+  frameworks: FrameworkOption[];
+  uncommittedConfirmed: boolean;
   updateVscodeSettings: unknown;
 }

@@ -1,7 +1,7 @@
-import type { TypedFlatConfigItem } from "../types";
-
-// @ts-ignore -- subpath may lack type declarations
+// @ts-expect-error -- subpath may lack type declarations
 import pluginComments from "@eslint-community/eslint-plugin-eslint-comments";
+
+import type { TypedFlatConfigItem } from "../types";
 
 export async function comments(): Promise<TypedFlatConfigItem[]> {
   return [

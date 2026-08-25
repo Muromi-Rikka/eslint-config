@@ -1,15 +1,5 @@
 import { execSync } from "node:child_process";
 
-export function isGitClean(): boolean {
-  try {
-    execSync("git diff-index --quiet HEAD --");
-    return true;
-  }
-  catch {
-    return false;
-  }
-}
-
 export function getEslintConfigContent(
   mainConfig: string,
   additionalConfigs?: string[],
@@ -21,4 +11,14 @@ export default renton({
 ${mainConfig}
 }${additionalConfigs?.map(config => `,{\n${config}\n}`)})
 `.trimStart();
+}
+
+export function isGitClean(): boolean {
+  try {
+    execSync("git diff-index --quiet HEAD --");
+    return true;
+  }
+  catch {
+    return false;
+  }
 }

@@ -1,7 +1,7 @@
-import fs from "node:fs/promises";
 import { flatConfigsToRulesDTS } from "eslint-typegen/core";
-// @ts-ignore -- internal API
+// @ts-expect-error -- internal API
 import { builtinRules } from "eslint/use-at-your-own-risk";
+import fs from "node:fs/promises";
 import { renton } from "../src/factory.ts";
 
 const configs = [
@@ -35,7 +35,7 @@ const configs = [
   },
 ];
 
-const configNames = configs.map(i => i.name).filter(Boolean) as string[];
+const configNames = configs.map(index => index.name).filter(Boolean) as string[];
 
 let dts = await flatConfigsToRulesDTS(configs, {
   exportTypeName: "Rules",
@@ -47,7 +47,7 @@ let dts = await flatConfigsToRulesDTS(configs, {
 
 dts += `
 // Names of all the configs
-export type ConfigNames = ${configNames.map(i => `'${i}'`).join(" | ")}
+export type ConfigNames = ${configNames.map(index => `'${index}'`).join(" | ")}
 `;
 
 await fs.writeFile("src/typegen.ts", dts);

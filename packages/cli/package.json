@@ -1,5 +1,6 @@
 {
   "name": "@renton/eslint-config-cli",
+  "type": "module",
   "version": "0.1.1",
   "description": "CLI for @renton/eslint-config setup",
   "author": "Rikka <admin@rikka.cc>",
@@ -9,10 +10,6 @@
     "url": "git+https://github.com/Muromi-Rikka/eslint-config.git",
     "directory": "packages/cli"
   },
-  "type": "module",
-  "bin": {
-    "renton-eslint": "./dist/index.mjs"
-  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -21,6 +18,9 @@
   },
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "renton-eslint": "./dist/index.mjs"
+  },
   "files": ["dist"],
   "scripts": {
     "build": "tsdown",

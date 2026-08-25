@@ -1,10 +1,13 @@
 {
   "name": "@renton/eslint-config-monorepo",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.15.0",
   "description": "Monorepo for @renton ESLint configurations",
   "author": "Rikka <admin@rikka.cc>",
   "license": "MIT",
+  "homepage": "https://github.com/Muromi-Rikka/eslint-config#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Muromi-Rikka/eslint-config.git"
@@ -12,12 +15,9 @@
   "bugs": {
     "url": "https://github.com/Muromi-Rikka/eslint-config/issues"
   },
-  "homepage": "https://github.com/Muromi-Rikka/eslint-config#readme",
   "engines": {
     "node": ">=26.0.0"
   },
-  "type": "module",
-  "packageManager": "pnpm@10.15.0",
   "scripts": {
     "build": "pnpm -r run build",
     "lint": "eslint .",

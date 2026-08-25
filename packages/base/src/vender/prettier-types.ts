@@ -9,9 +9,9 @@ export interface VendoredPrettierOptions {
   bracketSpacing?: boolean;
   cursorOffset?: number;
   editorconfig?: boolean;
-  endOfLine?: "auto" | "crlf" | "lf" | "cr";
+  endOfLine?: "auto" | "cr" | "crlf" | "lf";
   filepath?: string;
-  htmlWhitespaceSensitivity?: "css" | "strict" | "ignore";
+  htmlWhitespaceSensitivity?: "css" | "ignore" | "strict";
   insertPragma?: boolean;
   jsxSingleQuote?: boolean;
   parser?: string;
@@ -28,10 +28,10 @@ export interface VendoredPrettierOptions {
   tabWidth?: number;
   trailingComma?: "all" | "es5" | "none";
   useTabs?: boolean;
-  xmlQuoteAttributes?: "double" | "single" | "preserve";
+  xmlQuoteAttributes?: "double" | "preserve" | "single";
   xmlSelfClosingSpace?: boolean;
   xmlSortAttributesByKey?: boolean;
-  xmlWhitespaceSensitivity?: "strict" | "preserve" | "ignore";
+  xmlWhitespaceSensitivity?: "ignore" | "preserve" | "strict";
 }
 
 export type VendoredPrettierRuleOptions = VendoredPrettierOptions;

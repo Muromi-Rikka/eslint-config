@@ -1,9 +1,11 @@
 {
   "name": "@renton/eslint-config-frontend",
+  "type": "module",
   "version": "0.2.0",
   "description": "ESLint configuration for frontend projects with Tailwind CSS support",
   "author": "Rikka <admin@rikka.cc>",
   "license": "MIT",
+  "homepage": "https://github.com/Muromi-Rikka/eslint-config/tree/main/packages/frontend#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Muromi-Rikka/eslint-config.git",
@@ -12,7 +14,6 @@
   "bugs": {
     "url": "https://github.com/Muromi-Rikka/eslint-config/issues"
   },
-  "homepage": "https://github.com/Muromi-Rikka/eslint-config/tree/main/packages/frontend#readme",
   "keywords": [
     "eslint",
     "eslint-config",
@@ -20,10 +21,6 @@
     "tailwindcss",
     "lint"
   ],
-  "engines": {
-    "node": ">=24.0.0"
-  },
-  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -33,11 +30,18 @@
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": ["dist"],
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "build": "tsdown",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "@renton/eslint-config": "workspace:*",
+    "eslint": "^9.0.0 || ^10.0.0"
   },
   "dependencies": {
     "@renton/eslint-config": "workspace:*",
@@ -48,9 +52,5 @@
     "eslint": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:"
-  },
-  "peerDependencies": {
-    "@renton/eslint-config": "workspace:*",
-    "eslint": "^9.0.0 || ^10.0.0"
   }
 }

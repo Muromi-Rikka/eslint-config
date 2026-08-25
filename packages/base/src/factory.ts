@@ -84,9 +84,7 @@ export async function renton(
   }
 
   // Base configs
-  configs.push(javascript());
-  configs.push(imports());
-  configs.push(comments());
+  configs.push(javascript(), imports(), comments());
 
   if (enableCommand) {
     configs.push(command());
@@ -133,8 +131,7 @@ export async function renton(
   if (enableJsonc) {
     configs.push(jsonc());
     if (enableSort) {
-      configs.push(Promise.resolve(sortPackageJson()));
-      configs.push(Promise.resolve(sortTsconfig()));
+      configs.push(Promise.resolve(sortPackageJson()), Promise.resolve(sortTsconfig()));
     }
   }
 

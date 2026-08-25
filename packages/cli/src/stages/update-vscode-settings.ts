@@ -1,41 +1,39 @@
-import type { PromptResult } from "../types";
+import * as p from "@clack/prompts";
+import { green } from "ansis";
 import fs from "node:fs";
 import fsp from "node:fs/promises";
 import path from "node:path";
-
 import process from "node:process";
-import * as p from "@clack/prompts";
 
-import { green } from "ansis";
+import type { PromptResult } from "../types";
 
 import { vscodeSettingsString } from "../constants";
 
 const LAST_LINE_PATTERN = /\s*\}$/;
 
 export async function updateVscodeSettings(result: PromptResult): Promise<void> {
-  const cwd = process.cwd();
-
   if (!result.updateVscodeSettings)
     return;
 
+  const cwd = process.cwd();
   const dotVscodePath: string = path.join(cwd, ".vscode");
   const settingsPath: string = path.join(dotVscodePath, "settings.json");
 
   if (!fs.existsSync(dotVscodePath))
     await fsp.mkdir(dotVscodePath, { recursive: true });
 
-  if (!fs.existsSync(settingsPath)) {
-    await fsp.writeFile(settingsPath, `{${vscodeSettingsString}}\n`, "utf-8");
-    p.log.success(green`Created .vscode/settings.json`);
-  }
-  else {
+  if (fs.existsSync(settingsPath)) {
     let settingsContent = await fsp.readFile(settingsPath, "utf8");
 
     settingsContent = settingsContent.trim().replace(LAST_LINE_PATTERN, "");
     settingsContent += settingsContent.endsWith(",") || settingsContent.endsWith("{") ? "" : ",";
     settingsContent += `${vscodeSettingsString}}\n`;
 
-    await fsp.writeFile(settingsPath, settingsContent, "utf-8");
+    await fsp.writeFile(settingsPath, settingsContent, "utf8");
     p.log.success(green`Updated .vscode/settings.json`);
+  }
+  else {
+    await fsp.writeFile(settingsPath, `{${vscodeSettingsString}}\n`, "utf8");
+    p.log.success(green`Created .vscode/settings.json`);
   }
 }

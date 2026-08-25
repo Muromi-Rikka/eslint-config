@@ -2,13 +2,13 @@ import type { OptionsOverrides, TypedFlatConfigItem } from "@renton/eslint-confi
 import { interopDefault } from "@renton/eslint-config/utils";
 
 export interface BaselineOptions {
-  baseline?: "widely" | "newly" | number;
-  available?: "widely" | "newly" | number;
+  available?: "newly" | "widely" | number;
+  baseline?: "newly" | "widely" | number;
   ignoreFeatures?: string[];
 }
 
 export interface OptionsBaselineConfig extends OptionsOverrides {
-  baseline?: boolean | BaselineOptions;
+  baseline?: BaselineOptions | boolean;
 }
 
 export async function baseline(options: OptionsBaselineConfig = {}): Promise<TypedFlatConfigItem[]> {

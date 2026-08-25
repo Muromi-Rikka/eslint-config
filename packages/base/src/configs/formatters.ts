@@ -1,9 +1,7 @@
+import { isPackageInScope } from "local-pkg";
 import type { OptionsFormatters, StylisticOptions, TypedFlatConfigItem, VendoredPrettierOptions } from "../types";
 import type { VendoredPrettierRuleOptions } from "../vender/prettier-types";
-
-import { isPackageInScope } from "local-pkg";
 import { GLOB_ASTRO, GLOB_CSS, GLOB_GRAPHQL, GLOB_HTML, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS, GLOB_SVG, GLOB_XML } from "../globs";
-
 import { ensurePackages, interopDefault, parserPlain } from "../utils";
 
 const StylisticConfigDefaults: StylisticOptions = {
@@ -12,20 +10,6 @@ const StylisticConfigDefaults: StylisticOptions = {
   quotes: "double",
   semi: true,
 };
-
-function mergePrettierOptions(
-  options: VendoredPrettierOptions,
-  overrides: VendoredPrettierRuleOptions,
-): VendoredPrettierRuleOptions {
-  return {
-    ...options,
-    ...overrides,
-    plugins: [
-      ...(overrides.plugins || []),
-      ...(options.plugins || []),
-    ],
-  };
-}
 
 export async function formatters(
   options: OptionsFormatters | true = {},
@@ -84,7 +68,7 @@ export async function formatters(
     quoteStyle: quotes === "single" ? "preferSingle" : "preferDouble",
     useTabs: indent === "tab",
     // @ts-expect-error - `options.dprintOptions` is boolean
-    ...options.dprintOptions || {},
+    ...options.dprintOptions,
   };
 
   const pluginFormat = await interopDefault(import("eslint-plugin-format"));
@@ -254,9 +238,7 @@ export async function formatters(
           }),
         ],
       },
-    });
-
-    configs.push({
+    }, {
       files: [GLOB_ASTRO],
       name: "renton/formatter/astro/disables",
       rules: {
@@ -290,4 +272,18 @@ export async function formatters(
   }
 
   return configs;
+}
+
+function mergePrettierOptions(
+  options: VendoredPrettierOptions,
+  overrides: VendoredPrettierRuleOptions,
+): VendoredPrettierRuleOptions {
+  return {
+    ...options,
+    ...overrides,
+    plugins: [
+      ...(overrides.plugins || []),
+      ...(options.plugins || []),
+    ],
+  };
 }

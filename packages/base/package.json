@@ -1,9 +1,11 @@
 {
   "name": "@renton/eslint-config",
+  "type": "module",
   "version": "0.2.0",
   "description": "Base ESLint configuration for TypeScript and JavaScript projects",
   "author": "Rikka <admin@rikka.cc>",
   "license": "MIT",
+  "homepage": "https://github.com/Muromi-Rikka/eslint-config/tree/main/packages/base#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Muromi-Rikka/eslint-config.git",
@@ -12,7 +14,6 @@
   "bugs": {
     "url": "https://github.com/Muromi-Rikka/eslint-config/issues"
   },
-  "homepage": "https://github.com/Muromi-Rikka/eslint-config/tree/main/packages/base#readme",
   "keywords": [
     "eslint",
     "eslint-config",
@@ -20,10 +21,6 @@
     "javascript",
     "lint"
   ],
-  "engines": {
-    "node": ">=24.0.0"
-  },
-  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -37,6 +34,9 @@
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": ["dist"],
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "build": "pnpm run build:typegen && tsdown",
     "build:typegen": "tsx scripts/typegen.ts",
@@ -44,14 +44,17 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
+  "peerDependencies": {
+    "eslint": "^9.0.0 || ^10.0.0"
+  },
   "dependencies": {
     "@antfu/install-pkg": "catalog:dev",
     "@clack/prompts": "catalog:dev",
     "@eslint-community/eslint-plugin-eslint-comments": "catalog:plugins",
     "@eslint/js": "catalog:plugins",
     "@eslint/markdown": "catalog:plugins",
-    "@vitest/eslint-plugin": "catalog:plugins",
     "@stylistic/eslint-plugin": "catalog:plugins",
+    "@vitest/eslint-plugin": "catalog:plugins",
     "eslint-config-flat-gitignore": "catalog:plugins",
     "eslint-flat-config-utils": "catalog:plugins",
     "eslint-plugin-antfu": "catalog:plugins",
@@ -81,8 +84,5 @@
     "tsdown": "catalog:",
     "tsx": "catalog:dev",
     "typescript": "catalog:"
-  },
-  "peerDependencies": {
-    "eslint": "^9.0.0 || ^10.0.0"
   }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/name-replacements -- utils.ts is a conventional name */
-import type { Awaitable, TypedFlatConfigItem } from "./types";
-
 import { isPackageExists } from "local-pkg";
+
+import type { Awaitable, TypedFlatConfigItem } from "./types";
 
 export async function interopDefault<T>(m: Awaitable<T>): Promise<T extends { default: infer U } ? U : T> {
   const resolved = await m;
@@ -77,10 +77,6 @@ export const parserPlain = {
   }),
 };
 
-export function isPackageInScope(name: string): boolean {
-  return isPackageExists(name);
-}
-
 export async function ensurePackages(packages: (string | undefined)[]): Promise<void> {
   if (process.env.CI || process.stdout.isTTY === false)
     return;
@@ -103,4 +99,8 @@ export async function ensurePackages(packages: (string | undefined)[]): Promise<
   catch {
     console.warn(`[renton] Missing packages: ${nonExistingPackages.join(", ")}. Please install them manually.`);
   }
+}
+
+export function isPackageInScope(name: string): boolean {
+  return isPackageExists(name);
 }

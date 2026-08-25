@@ -37,16 +37,16 @@ jobs:
         run: pnpm lint
 
       - name: Test base
-        run: pnpm --filter @renton/eslint-config test:run
+        run: pnpm --filter @renton/eslint-config test
 
       - name: Test frontend
-        run: pnpm --filter @renton/eslint-config-frontend test:run
+        run: pnpm --filter @renton/eslint-config-frontend test
 
       - name: Test react
-        run: pnpm --filter @renton/eslint-config-react test:run
+        run: pnpm --filter @renton/eslint-config-react test
 
       - name: Test vue
-        run: pnpm --filter @renton/eslint-config-vue test:run
+        run: pnpm --filter @renton/eslint-config-vue test
 
       - name: Type check
         run: pnpm tsc --noEmit

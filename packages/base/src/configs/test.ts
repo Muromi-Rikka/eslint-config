@@ -3,7 +3,6 @@ import type { OptionsFiles, OptionsIsInEditor, OptionsOverrides, TypedFlatConfig
 import { GLOB_TESTS } from "../globs";
 import { interopDefault } from "../utils";
 
-// Hold the reference so we don't redeclare the plugin on each call
 let _pluginTest: any;
 
 export async function test(
@@ -24,7 +23,8 @@ export async function test(
     interopDefault(import("eslint-plugin-no-only-tests")),
   ] as const);
 
-  _pluginTest = _pluginTest || {
+  // eslint-disable-next-line unicorn/no-top-level-assignment-in-function -- intentional caching pattern
+  _pluginTest ||= {
     ...pluginVitest,
     rules: {
       ...pluginVitest.rules,
@@ -44,20 +44,19 @@ export async function test(
       files,
       name: "renton/test/rules",
       rules: {
+        "antfu/no-top-level-await": "off",
+        "no-unused-expressions": "off",
         "test/consistent-test-it": ["error", { fn: "it", withinDescribe: "it" }],
         "test/no-identical-title": "error",
+
         "test/no-import-node-test": "error",
         "test/no-only-tests": isInEditor ? "warn" : "error",
 
+        // Disables
+
         "test/prefer-hooks-in-order": "error",
         "test/prefer-lowercase-title": "error",
-
-        // Disables
-        ...{
-          "antfu/no-top-level-await": "off",
-          "no-unused-expressions": "off",
-          "ts/explicit-function-return-type": "off",
-        },
+        "ts/explicit-function-return-type": "off",
 
         ...overrides,
       },

@@ -1,11 +1,10 @@
-import type { ExtraLibrariesOption, PromptResult } from "../types";
+import * as p from "@clack/prompts";
+import c from "ansis";
 import fsp from "node:fs/promises";
 import path from "node:path";
-
 import process from "node:process";
-import * as p from "@clack/prompts";
 
-import c from "ansis";
+import type { ExtraLibrariesOption, PromptResult } from "../types";
 
 import { dependenciesMap } from "../constants";
 
@@ -16,43 +15,40 @@ export async function updatePackageJson(result: PromptResult): Promise<void> {
 
   p.log.step(c.cyan`Updating package.json with @renton/eslint-config`);
 
-  const pkgContent = await fsp.readFile(pathPackageJSON, "utf-8");
-  const pkg: Record<string, any> = JSON.parse(pkgContent);
+  const packageContent = await fsp.readFile(pathPackageJSON, "utf8");
+  const package_: Record<string, any> = JSON.parse(packageContent);
 
-  pkg.devDependencies ??= {};
-  pkg.devDependencies["@renton/eslint-config"] = `^latest`;
-  pkg.devDependencies.eslint ??= `^10.0.0`;
+  package_.devDependencies ??= {};
+  package_.devDependencies["@renton/eslint-config"] = `^latest`;
+  package_.devDependencies.eslint ??= `^10.0.0`;
 
   const addedPackages: string[] = [];
 
-  if (result.extra.length) {
-    result.extra.forEach((item: ExtraLibrariesOption) => {
-      switch (item) {
-        case "formatter":
-          dependenciesMap.formatter.forEach((f) => {
-            if (!f)
-              return;
-            pkg.devDependencies[f] = `^latest`;
-            addedPackages.push(f);
-          });
-          break;
-      }
-    });
-  }
-
-  for (const framework of result.frameworks) {
-    const deps = dependenciesMap[framework];
-    if (deps) {
-      deps.forEach((f) => {
-        pkg.devDependencies[f] = `^latest`;
-        addedPackages.push(f);
-      });
+  function addDependencies(dependencies: (string | undefined)[]): void {
+    for (const dependency of dependencies) {
+      if (!dependency)
+        continue;
+      package_.devDependencies[dependency] = `^latest`;
+      addedPackages.push(dependency);
     }
   }
 
-  if (addedPackages.length)
+  if (result.extra.length > 0) {
+    for (const item of result.extra as ExtraLibrariesOption[]) {
+      if (item === "formatter")
+        addDependencies(dependenciesMap.formatter);
+    }
+  }
+
+  for (const framework of result.frameworks) {
+    const dependencies = dependenciesMap[framework];
+    if (dependencies)
+      addDependencies(dependencies);
+  }
+
+  if (addedPackages.length > 0)
     p.note(c.dim(addedPackages.join(", ")), "Added packages");
 
-  await fsp.writeFile(pathPackageJSON, JSON.stringify(pkg, null, 2));
+  await fsp.writeFile(pathPackageJSON, JSON.stringify(package_, null, 2));
   p.log.success(c.green`Changes wrote to package.json`);
 }

@@ -1,6 +1,6 @@
-import type { ExtraLibrariesOption, FrameworkOption, PromItem } from "./types";
-
 import c from "ansis";
+
+import type { ExtraLibrariesOption, FrameworkOption, PromItem } from "./types";
 
 export const vscodeSettingsString = `
   // Disable the default formatter, use eslint instead

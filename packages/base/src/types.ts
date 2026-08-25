@@ -1,8 +1,6 @@
-import type { Linter } from "eslint";
 import type { ConfigWithExtends } from "eslint-flat-config-utils";
-import type { ConfigNames, Rules } from "./typegen";
+import type { Rules } from "./typegen";
 
-export type { ConfigNames, Rules };
 export type Awaitable<T> = Promise<T> | T;
 
 export interface OptionsConfig {
@@ -34,6 +32,9 @@ export interface OptionsConfig {
 
   gitignore?: boolean;
 
+  jsdoc?: boolean;
+
+  jsonc?: boolean;
   /**
    * Enable JSX related rules.
    *
@@ -42,9 +43,6 @@ export interface OptionsConfig {
    * @default true
    */
   jsx?: boolean | OptionsJSX;
-
-  jsdoc?: boolean;
-  jsonc?: boolean;
   markdown?: boolean;
   node?: boolean;
   perfectionist?: boolean;
@@ -84,40 +82,14 @@ export interface OptionsFiles {
 
 export interface OptionsFormatters {
   /**
+   * Enable formatting support for Astro.
+   */
+  astro?: "prettier" | boolean;
+
+  /**
    * Enable formatting support for CSS, Less, Sass, and SCSS.
    */
   css?: "prettier" | boolean;
-
-  /**
-   * Enable formatting support for HTML.
-   */
-  html?: "prettier" | boolean;
-
-  /**
-   * Enable formatting support for XML.
-   */
-  xml?: "prettier" | boolean;
-
-  /**
-   * Enable formatting support for SVG.
-   */
-  svg?: "prettier" | boolean;
-
-  /**
-   * Enable formatting support for Markdown.
-   * Support both Prettier and dprint. When set to `true`, it will use Prettier.
-   */
-  markdown?: "prettier" | "dprint" | boolean;
-
-  /**
-   * Enable formatting support for GraphQL.
-   */
-  graphql?: "prettier" | boolean;
-
-  /**
-   * Custom options for Prettier.
-   */
-  prettierOptions?: VendoredPrettierOptions;
 
   /**
    * Custom options for dprint.
@@ -125,9 +97,35 @@ export interface OptionsFormatters {
   dprintOptions?: boolean;
 
   /**
-   * Enable formatting support for Astro.
+   * Enable formatting support for GraphQL.
    */
-  astro?: "prettier" | boolean;
+  graphql?: "prettier" | boolean;
+
+  /**
+   * Enable formatting support for HTML.
+   */
+  html?: "prettier" | boolean;
+
+  /**
+   * Enable formatting support for Markdown.
+   * Support both Prettier and dprint. When set to `true`, it will use Prettier.
+   */
+  markdown?: "dprint" | "prettier" | boolean;
+
+  /**
+   * Custom options for Prettier.
+   */
+  prettierOptions?: VendoredPrettierOptions;
+
+  /**
+   * Enable formatting support for SVG.
+   */
+  svg?: "prettier" | boolean;
+
+  /**
+   * Enable formatting support for XML.
+   */
+  xml?: "prettier" | boolean;
 }
 
 export interface OptionsIsInEditor {
@@ -146,11 +144,12 @@ export interface OptionsJSX {
   a11y?: boolean | OptionsJSXA11y;
 }
 
-export interface OptionsJSXA11y extends OptionsOverrides {}
-
 export interface OptionsOverrides {
   overrides?: Rules;
 }
+
+// eslint-disable-next-line perfectionist/sort-modules -- OptionsJSXA11y extends OptionsOverrides, must come after
+export interface OptionsJSXA11y extends OptionsOverrides {}
 
 export interface OptionsPnpm {
   /**
@@ -199,7 +198,7 @@ export type TypedFlatConfigItem = Omit<ConfigWithExtends, "plugins" | "rules"> &
  */
 export interface VendoredPrettierOptions {
   [key: string]: any;
-  endOfLine?: "auto" | "crlf" | "lf" | "cr";
+  endOfLine?: "auto" | "cr" | "crlf" | "lf";
   printWidth?: number;
   semi?: boolean;
   singleQuote?: boolean;
@@ -207,3 +206,5 @@ export interface VendoredPrettierOptions {
   trailingComma?: "all" | "es5" | "none";
   useTabs?: boolean;
 }
+
+export { type ConfigNames, type Rules } from "./typegen";

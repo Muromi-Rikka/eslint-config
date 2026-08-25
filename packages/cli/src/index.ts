@@ -1,8 +1,7 @@
-import process from "node:process";
-
 import * as p from "@clack/prompts";
 import c from "ansis";
 import { cac } from "cac";
+import process from "node:process";
 
 import { run } from "./run";
 
@@ -18,10 +17,10 @@ cli
   .option("--yes, -y", "Skip prompts and use default values", { default: false })
   .option("--template, -t <template>", "Use the framework template: vue / react", { type: [] })
   .option("--extra, -e <extra>", "Use the extra utils: formatter", { type: [] })
-  .action(async (args) => {
+  .action(async (arguments_) => {
     header();
     try {
-      await run(args);
+      await run(arguments_);
     }
     catch (error) {
       p.log.error(c.inverse.red(" Failed to migrate "));
