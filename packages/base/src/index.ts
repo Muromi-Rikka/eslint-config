@@ -1,2 +1,11 @@
 export { renton } from "./factory";
-export type { OptionsConfig, OptionsOverrides, StylisticOptions, TypedFlatConfigItem } from "./types";
+export type {
+  ConfigNames,
+  OptionsConfig,
+  OptionsFormatters,
+  OptionsJSX,
+  OptionsOverrides,
+  Rules,
+  StylisticOptions,
+  TypedFlatConfigItem,
+} from "./types";

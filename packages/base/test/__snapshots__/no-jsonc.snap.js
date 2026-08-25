@@ -144,6 +144,133 @@
     ],
   },
   {
+    "name": "renton/comments/setup",
+    "plugins": [
+      "eslint-comments",
+    ],
+  },
+  {
+    "name": "renton/comments/rules",
+    "rules": [
+      "eslint-comments/disable-enable-pair",
+      "eslint-comments/no-aggregating-enable",
+      "eslint-comments/no-duplicate-disable",
+      "eslint-comments/no-unlimited-disable",
+      "eslint-comments/no-unused-enable",
+    ],
+  },
+  {
+    "name": "renton/command/rules",
+    "plugins": [
+      "command",
+    ],
+    "rules": [
+      "command/command",
+    ],
+  },
+  {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
+    "name": "renton/perfectionist/rules",
+    "plugins": [
+      "perfectionist",
+    ],
+    "rules": [
+      "perfectionist/sort-array-includes",
+      "perfectionist/sort-classes",
+      "perfectionist/sort-decorators",
+      "perfectionist/sort-enums",
+      "perfectionist/sort-export-attributes",
+      "perfectionist/sort-exports",
+      "perfectionist/sort-heritage-clauses",
+      "perfectionist/sort-import-attributes",
+      "perfectionist/sort-imports",
+      "perfectionist/sort-interfaces",
+      "perfectionist/sort-intersection-types",
+      "perfectionist/sort-maps",
+      "perfectionist/sort-modules",
+      "perfectionist/sort-named-exports",
+      "perfectionist/sort-named-imports",
+      "perfectionist/sort-object-types",
+      "perfectionist/sort-objects",
+      "perfectionist/sort-sets",
+      "perfectionist/sort-switch-case",
+      "perfectionist/sort-union-types",
+      "perfectionist/sort-variable-declarations",
+    ],
+  },
+  {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
+    "name": "renton/node/rules",
+    "plugins": [
+      "node",
+    ],
+    "rules": [
+      "node/handle-callback-err",
+      "node/no-deprecated-api",
+      "node/no-exports-assign",
+      "node/no-new-require",
+      "node/no-path-concat",
+      "node/process-exit-as-throw",
+    ],
+  },
+  {
+    "files": [
+      "**/*.?([cm])[jt]s?(x)",
+    ],
+    "name": "renton/jsdoc/rules",
+    "plugins": [
+      "jsdoc",
+    ],
+    "rules": [
+      "jsdoc/check-access",
+      "jsdoc/check-param-names",
+      "jsdoc/check-property-names",
+      "jsdoc/check-tag-names",
+      "jsdoc/check-types",
+      "jsdoc/empty-tags",
+      "jsdoc/implements-on-classes",
+      "jsdoc/no-defaults",
+      "jsdoc/no-multi-asterisks",
+      "jsdoc/require-asterisk-prefix",
+      "jsdoc/require-description",
+      "- jsdoc/require-jsdoc",
+      "- jsdoc/require-param",
+      "- jsdoc/require-param-description",
+      "- jsdoc/require-param-type",
+      "- jsdoc/require-property",
+      "- jsdoc/require-property-description",
+      "- jsdoc/require-property-type",
+      "- jsdoc/require-returns",
+      "jsdoc/require-returns-check",
+      "- jsdoc/require-returns-description",
+      "- jsdoc/require-returns-type",
+      "jsdoc/require-throws",
+      "- jsdoc/require-yields",
+      "jsdoc/require-yields-check",
+      "jsdoc/tag-lines",
+    ],
+  },
+  {
+    "files": [
+      "**/*.?([cm])jsx",
+      "**/*.?([cm])tsx",
+    ],
+    "languageOptions": {
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true,
+        },
+      },
+    },
+    "name": "renton/jsx/setup",
+    "plugins": [],
+    "rules": [],
+  },
+  {
     "files": [
       "**/*.?([cm])ts",
       "**/*.?([cm])tsx",
@@ -293,117 +420,6 @@
     "files": [
       "**/*.?([cm])[jt]s?(x)",
     ],
-    "name": "renton/node/rules",
-    "plugins": [
-      "node",
-    ],
-    "rules": [
-      "node/handle-callback-err",
-      "node/no-deprecated-api",
-      "node/no-exports-assign",
-      "node/no-new-require",
-      "node/no-path-concat",
-      "node/process-exit-as-throw",
-    ],
-  },
-  {
-    "files": [
-      "**/*.y?(a)ml",
-    ],
-    "language": "yaml/yaml",
-    "name": "renton/yaml/rules",
-    "plugins": [
-      "yaml",
-    ],
-    "rules": [
-      "yaml/block-mapping",
-      "yaml/block-sequence",
-      "yaml/no-empty-document",
-      "yaml/no-empty-key",
-      "yaml/no-empty-mapping-value",
-      "yaml/no-empty-sequence-entry",
-      "yaml/no-irregular-whitespace",
-      "yaml/no-tab-indent",
-      "yaml/plain-scalar",
-      "yaml/vue-custom-block/no-parsing-error",
-    ],
-  },
-  {
-    "files": [
-      "pnpm-workspace.yaml",
-    ],
-    "languageOptions": {
-      "parser": "yaml-eslint-parser",
-    },
-    "name": "renton/pnpm/pnpm-workspace-yaml",
-    "plugins": [
-      "pnpm",
-    ],
-    "rules": [
-      "pnpm/yaml-enforce-settings",
-      "pnpm/yaml-no-duplicate-catalog-item",
-      "pnpm/yaml-no-unused-catalog-item",
-    ],
-  },
-  {
-    "files": [
-      "**/*.md",
-    ],
-    "name": "renton/markdown/setup",
-    "plugins": [
-      "markdown",
-    ],
-  },
-  {
-    "files": [
-      "**/*.md",
-    ],
-    "languageOptions": {
-      "parser": "parser-plain",
-    },
-    "name": "renton/markdown/parser",
-  },
-  {
-    "files": [
-      "**/*.?([cm])[jt]s?(x)",
-    ],
-    "name": "renton/jsdoc/rules",
-    "plugins": [
-      "jsdoc",
-    ],
-    "rules": [
-      "jsdoc/check-access",
-      "jsdoc/check-param-names",
-      "jsdoc/check-property-names",
-      "jsdoc/check-tag-names",
-      "jsdoc/check-types",
-      "jsdoc/empty-tags",
-      "jsdoc/implements-on-classes",
-      "jsdoc/no-defaults",
-      "jsdoc/no-multi-asterisks",
-      "jsdoc/require-asterisk-prefix",
-      "jsdoc/require-description",
-      "- jsdoc/require-jsdoc",
-      "- jsdoc/require-param",
-      "- jsdoc/require-param-description",
-      "- jsdoc/require-param-type",
-      "- jsdoc/require-property",
-      "- jsdoc/require-property-description",
-      "- jsdoc/require-property-type",
-      "- jsdoc/require-returns",
-      "jsdoc/require-returns-check",
-      "- jsdoc/require-returns-description",
-      "- jsdoc/require-returns-type",
-      "jsdoc/require-throws",
-      "- jsdoc/require-yields",
-      "jsdoc/require-yields-check",
-      "jsdoc/tag-lines",
-    ],
-  },
-  {
-    "files": [
-      "**/*.?([cm])[jt]s?(x)",
-    ],
     "name": "renton/regexp/rules",
     "plugins": [
       "regexp",
@@ -477,6 +493,90 @@
       "regexp/strict",
       "regexp/use-ignore-case",
     ],
+  },
+  {
+    "name": "renton/test/setup",
+    "plugins": [
+      "test",
+    ],
+  },
+  {
+    "files": [
+      "**/__tests__/**/*.?([cm])[jt]s?(x)",
+      "**/*.spec.?([cm])[jt]s?(x)",
+      "**/*.test.?([cm])[jt]s?(x)",
+      "**/*.bench.?([cm])[jt]s?(x)",
+      "**/*.benchmark.?([cm])[jt]s?(x)",
+    ],
+    "name": "renton/test/rules",
+    "rules": [
+      "test/consistent-test-it",
+      "test/no-identical-title",
+      "test/no-import-node-test",
+      "test/no-only-tests",
+      "test/prefer-hooks-in-order",
+      "test/prefer-lowercase-title",
+      "- antfu/no-top-level-await",
+      "- no-unused-expressions",
+      "- ts/explicit-function-return-type",
+    ],
+  },
+  {
+    "files": [
+      "pnpm-workspace.yaml",
+    ],
+    "languageOptions": {
+      "parser": "yaml-eslint-parser",
+    },
+    "name": "renton/pnpm/pnpm-workspace-yaml",
+    "plugins": [
+      "pnpm",
+    ],
+    "rules": [
+      "pnpm/yaml-enforce-settings",
+      "pnpm/yaml-no-duplicate-catalog-item",
+      "pnpm/yaml-no-unused-catalog-item",
+    ],
+  },
+  {
+    "files": [
+      "**/*.y?(a)ml",
+    ],
+    "language": "yaml/yaml",
+    "name": "renton/yaml/rules",
+    "plugins": [
+      "yaml",
+    ],
+    "rules": [
+      "yaml/block-mapping",
+      "yaml/block-sequence",
+      "yaml/no-empty-document",
+      "yaml/no-empty-key",
+      "yaml/no-empty-mapping-value",
+      "yaml/no-empty-sequence-entry",
+      "yaml/no-irregular-whitespace",
+      "yaml/no-tab-indent",
+      "yaml/plain-scalar",
+      "yaml/vue-custom-block/no-parsing-error",
+    ],
+  },
+  {
+    "files": [
+      "**/*.md",
+    ],
+    "name": "renton/markdown/setup",
+    "plugins": [
+      "markdown",
+    ],
+  },
+  {
+    "files": [
+      "**/*.md",
+    ],
+    "languageOptions": {
+      "parser": "parser-plain",
+    },
+    "name": "renton/markdown/parser",
   },
   {
     "files": [
@@ -835,34 +935,68 @@
   },
   {
     "files": [
-      "**/*.?([cm])[jt]s?(x)",
+      "**/scripts/**/*.?([cm])[jt]s?(x)",
     ],
-    "name": "renton/perfectionist/rules",
-    "plugins": [
-      "perfectionist",
-    ],
+    "name": "renton/disables/scripts",
     "rules": [
-      "perfectionist/sort-array-includes",
-      "perfectionist/sort-classes",
-      "perfectionist/sort-decorators",
-      "perfectionist/sort-enums",
-      "perfectionist/sort-export-attributes",
-      "perfectionist/sort-exports",
-      "perfectionist/sort-heritage-clauses",
-      "perfectionist/sort-import-attributes",
-      "perfectionist/sort-imports",
-      "perfectionist/sort-interfaces",
-      "perfectionist/sort-intersection-types",
-      "perfectionist/sort-maps",
-      "perfectionist/sort-modules",
-      "perfectionist/sort-named-exports",
-      "perfectionist/sort-named-imports",
-      "perfectionist/sort-object-types",
-      "perfectionist/sort-objects",
-      "perfectionist/sort-sets",
-      "perfectionist/sort-switch-case",
-      "perfectionist/sort-union-types",
-      "perfectionist/sort-variable-declarations",
+      "- antfu/no-top-level-await",
+      "- no-console",
+      "- ts/explicit-function-return-type",
+    ],
+  },
+  {
+    "files": [
+      "**/cli/**/*.?([cm])[jt]s?(x)",
+      "**/cli.?([cm])[jt]s?(x)",
+    ],
+    "name": "renton/disables/cli",
+    "rules": [
+      "- antfu/no-top-level-await",
+      "- no-console",
+    ],
+  },
+  {
+    "files": [
+      "**/bin/**/*",
+      "**/bin.?([cm])[jt]s?(x)",
+    ],
+    "name": "renton/disables/bin",
+    "rules": [
+      "- antfu/no-import-dist",
+      "- antfu/no-import-node-modules-by-path",
+    ],
+  },
+  {
+    "files": [
+      "**/*.d.?([cm])ts",
+    ],
+    "name": "renton/disables/dts",
+    "rules": [
+      "- eslint-comments/no-unlimited-disable",
+      "- no-restricted-syntax",
+      "- unused-imports/no-unused-vars",
+    ],
+  },
+  {
+    "files": [
+      "**/*.js",
+      "**/*.cjs",
+    ],
+    "name": "renton/disables/cjs",
+    "rules": [
+      "- ts/no-require-imports",
+    ],
+  },
+  {
+    "files": [
+      "**/*.config.?([cm])[jt]s?(x)",
+      "**/*.config.*.?([cm])[jt]s?(x)",
+    ],
+    "name": "renton/disables/config-files",
+    "rules": [
+      "- antfu/no-top-level-await",
+      "- no-console",
+      "- ts/explicit-function-return-type",
     ],
   },
 ]

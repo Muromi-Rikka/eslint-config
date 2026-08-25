@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@renton/eslint-config": "workspace:*",
+    "eslint-plugin-baseline-js": "catalog:plugins",
     "eslint-plugin-tailwindcss": "catalog:plugins"
   },
   "devDependencies": {
