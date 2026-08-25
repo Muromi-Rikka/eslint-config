@@ -70,7 +70,7 @@ function serializeConfigs(configs: TypedFlatConfigItem[]) {
             return `- ${rule}`;
           return rule;
         })
-        .sort();
+        .toSorted((a, b) => a.localeCompare(b));
     }
     return clone;
   });
