@@ -1,5 +1,13 @@
 # @renton/eslint-config-react
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`22621a5`](https://github.com/Muromi-Rikka/eslint-config/commit/22621a59402cc9135717e73800c5c8d16c0c271f)]:
+  - @renton/eslint-config@0.2.0
+  - @renton/eslint-config-frontend@0.2.0
+
 ## 0.1.2
 
 ### Patch Changes

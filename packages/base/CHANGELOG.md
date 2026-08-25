@@ -1,5 +1,15 @@
 # @renton/eslint-config
 
+## 0.2.0
+
+### Minor Changes
+
+- [#1](https://github.com/Muromi-Rikka/eslint-config/pull/1) [`22621a5`](https://github.com/Muromi-Rikka/eslint-config/commit/22621a59402cc9135717e73800c5c8d16c0c271f) Thanks [@Muromi-Rikka](https://github.com/Muromi-Rikka)! - Add eslint-comments, baseline browser checking, and eslint-typegen integration
+  
+  - **base**: Add `@eslint-community/eslint-plugin-eslint-comments` (always-on, 5 rules for comment directive best practices)
+  - **base**: Integrate `eslint-typegen` for generated rule types (`Rules`) and config name types (`ConfigNames`)
+  - **frontend**: Add `eslint-plugin-baseline-js` for baseline browser compatibility checking (opt-in via `baseline` option)
+
 ## 0.1.2
 
 ### Patch Changes
