@@ -82,7 +82,8 @@ function serializeConfigs(configs: TypedFlatConfigItem[]) {
           if (value === "off" || value === 0)
             return `- ${rule}`;
           return rule;
-        });
+        })
+        .sort();
     }
     return clone;
   });
