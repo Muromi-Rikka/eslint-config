@@ -144,6 +144,22 @@
     ],
   },
   {
+    "name": "renton/comments/setup",
+    "plugins": [
+      "eslint-comments",
+    ],
+  },
+  {
+    "name": "renton/comments/rules",
+    "rules": [
+      "eslint-comments/disable-enable-pair",
+      "eslint-comments/no-aggregating-enable",
+      "eslint-comments/no-duplicate-disable",
+      "eslint-comments/no-unlimited-disable",
+      "eslint-comments/no-unused-enable",
+    ],
+  },
+  {
     "name": "renton/command/rules",
     "plugins": [
       "command",

@@ -1,9 +1,9 @@
 import { FlatConfigComposer } from "eslint-flat-config-utils";
 import { findUpSync } from "find-up-simple";
-import type { OptionsConfig, TypedFlatConfigItem } from "./types";
+import type { ConfigNames, OptionsConfig, TypedFlatConfigItem } from "./types";
 import { command } from "./configs/command";
+import { comments } from "./configs/comments";
 import { disables } from "./configs/disables";
-import { formatters } from "./configs/formatters";
 import { ignores } from "./configs/ignores";
 import { imports } from "./configs/imports";
 import { javascript } from "./configs/javascript";
@@ -86,6 +86,7 @@ export async function renton(
   // Base configs
   configs.push(javascript());
   configs.push(imports());
+  configs.push(comments());
 
   if (enableCommand) {
     configs.push(command());
@@ -160,7 +161,8 @@ export async function renton(
   }
 
   if (enableFormatters) {
-    configs.push(formatters(
+    const { formatters: loadFormatters } = await import("./configs/formatters");
+    configs.push(loadFormatters(
       enableFormatters === true ? {} : enableFormatters,
       stylisticOptions || {},
     ));
@@ -172,7 +174,7 @@ export async function renton(
   }
 
   const resolvedConfigs = await Promise.all(configs);
-  const composer = new FlatConfigComposer<TypedFlatConfigItem, string>(...resolvedConfigs);
+  const composer = new FlatConfigComposer<TypedFlatConfigItem, ConfigNames>(...resolvedConfigs);
 
   composer.renamePlugins(PLUGIN_RENAMING);
 

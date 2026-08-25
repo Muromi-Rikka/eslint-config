@@ -1,6 +1,8 @@
 import type { Linter } from "eslint";
 import type { ConfigWithExtends } from "eslint-flat-config-utils";
+import type { ConfigNames, Rules } from "./typegen";
 
+export type { ConfigNames, Rules };
 export type Awaitable<T> = Promise<T> | T;
 
 export interface OptionsConfig {
@@ -178,8 +180,6 @@ export interface OptionsPnpm {
    */
   yaml?: boolean;
 }
-
-export type Rules = Record<string, Linter.RuleEntry<any> | undefined>;
 
 export interface StylisticOptions {
   braceStyle?: "1tbs" | "allman" | "stroustrup";
