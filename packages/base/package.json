@@ -79,6 +79,7 @@
     "eslint": "catalog:",
     "eslint-typegen": "catalog:dev",
     "tsdown": "catalog:",
+    "tsx": "catalog:dev",
     "typescript": "catalog:"
   },
   "peerDependencies": {
