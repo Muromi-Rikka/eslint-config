@@ -1,9 +1,10 @@
+import type { Config } from "eslint-flat-config-utils";
 import { flatConfigsToRulesDTS } from "eslint-typegen/core";
 import { builtinRules } from "eslint/use-at-your-own-risk";
 import fs from "node:fs/promises";
 import { renton } from "../src/factory";
 
-const configs = [
+const configs: Config<any>[] = [
   ...(await renton({
     command: true,
     disables: true,

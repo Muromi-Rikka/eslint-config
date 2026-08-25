@@ -1,4 +1,4 @@
-import type { OptionsOverrides, TypedFlatConfigItem } from "@renton/eslint-config";
+import type { OptionsOverrides, Rules, TypedFlatConfigItem } from "@renton/eslint-config";
 import { interopDefault } from "@renton/eslint-config/utils";
 
 export interface BaselineOptions {
@@ -41,7 +41,7 @@ export async function baseline(options: OptionsBaselineConfig = {}): Promise<Typ
           },
         ],
         ...overrides,
-      },
+      } as Rules,
     },
     {
       files: [
@@ -52,7 +52,7 @@ export async function baseline(options: OptionsBaselineConfig = {}): Promise<Typ
       name: "renton/baseline/tests",
       rules: {
         "baseline-js/use-baseline": "off",
-      },
+      } as Rules,
     },
   ];
 }

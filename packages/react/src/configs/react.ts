@@ -1,4 +1,4 @@
-import type { OptionsOverrides, TypedFlatConfigItem } from "@renton/eslint-config";
+import type { OptionsOverrides, Rules, TypedFlatConfigItem } from "@renton/eslint-config";
 import { interopDefault } from "@renton/eslint-config/utils";
 import { GLOB_REACT, GLOB_REACT_TS } from "../globs";
 
@@ -37,7 +37,7 @@ export async function react(options: OptionsOverrides = {}): Promise<TypedFlatCo
         "react-hooks/rules-of-hooks": "error",
         "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
         ...overrides,
-      },
+      } as Rules,
     },
     {
       files,

@@ -1,4 +1,4 @@
-import type { OptionsOverrides, TypedFlatConfigItem } from "@renton/eslint-config";
+import type { OptionsOverrides, Rules, TypedFlatConfigItem } from "@renton/eslint-config";
 import { interopDefault } from "@renton/eslint-config/utils";
 
 export async function next(options: OptionsOverrides = {}): Promise<TypedFlatConfigItem[]> {
@@ -36,7 +36,7 @@ export async function next(options: OptionsOverrides = {}): Promise<TypedFlatCon
         "next/no-typos": "error",
         "next/no-unwanted-polyfillio": "error",
         ...overrides,
-      },
+      } as Rules,
     },
   ];
 }
