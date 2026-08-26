@@ -23,16 +23,16 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs"
     },
     "./utils": {
-      "types": "./dist/utils.d.ts",
+      "types": "./dist/utils.d.mts",
       "import": "./dist/utils.mjs"
     }
   },
   "main": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "files": ["dist"],
   "engines": {
     "node": ">=24.0.0"
