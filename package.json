@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@11.24.0",
   "description": "Monorepo for @renton ESLint configurations",
   "author": "Rikka <admin@rikka.cc>",
   "license": "MIT",
