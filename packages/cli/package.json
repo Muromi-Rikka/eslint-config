@@ -1,7 +1,7 @@
 {
   "name": "@renton/eslint-config-cli",
   "type": "module",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "CLI for @renton/eslint-config setup",
   "author": "Rikka <admin@rikka.cc>",
   "license": "MIT",

@@ -1,7 +1,7 @@
 {
   "name": "@renton/eslint-config-vue",
   "type": "module",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "ESLint configuration for Vue.js and Vue I18n projects",
   "author": "Rikka <admin@rikka.cc>",
   "license": "MIT",

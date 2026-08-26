@@ -1,7 +1,7 @@
 {
   "name": "@renton/eslint-config",
   "type": "module",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Base ESLint configuration for TypeScript and JavaScript projects",
   "author": "Rikka <admin@rikka.cc>",
   "license": "MIT",
