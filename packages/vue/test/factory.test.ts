@@ -55,7 +55,10 @@ function serializeConfigs(configs: TypedFlatConfigItem[]) {
       }
       delete clone.languageOptions.globals;
       if (c.languageOptions.parserOptions) {
-        delete clone.languageOptions.parserOptions.parser;
+        const innerParser = clone.languageOptions.parserOptions.parser;
+        if (innerParser && typeof innerParser !== "string") {
+          clone.languageOptions.parserOptions.parser = innerParser.meta?.name ?? innerParser.name ?? "unknown";
+        }
         delete clone.languageOptions.parserOptions.projectService;
         delete clone.languageOptions.parserOptions.tsconfigRootDir;
       }

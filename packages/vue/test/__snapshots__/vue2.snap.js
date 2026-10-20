@@ -1283,6 +1283,7 @@
         "extraFileExtensions": [
           ".vue",
         ],
+        "parser": "typescript-eslint/parser",
       },
     },
     "name": "renton/vue/parser",

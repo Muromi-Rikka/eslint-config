@@ -1310,6 +1310,7 @@
         "extraFileExtensions": [
           ".vue",
         ],
+        "parser": "typescript-eslint/parser",
       },
     },
     "name": "renton/vue/parser",
@@ -1374,7 +1375,9 @@
     ],
     "languageOptions": {
       "parser": "vue-eslint-parser",
-      "parserOptions": {},
+      "parserOptions": {
+        "parser": "jsonc-eslint-parser",
+      },
     },
     "name": "renton/vue-i18n/setup/1",
   },
@@ -1387,7 +1390,9 @@
     ],
     "languageOptions": {
       "parser": "vue-eslint-parser",
-      "parserOptions": {},
+      "parserOptions": {
+        "parser": "yaml-eslint-parser",
+      },
     },
     "name": "renton/vue-i18n/setup/2",
     "rules": [
