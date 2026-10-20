@@ -15,6 +15,7 @@ export async function stylistic(options: StylisticOptions = {}): Promise<TypedFl
   const {
     braceStyle,
     indent,
+    jsx,
     quotes,
     semi,
   } = { ...defaults, ...options };
@@ -24,7 +25,7 @@ export async function stylistic(options: StylisticOptions = {}): Promise<TypedFl
   const config = pluginStylistic.configs.customize({
     braceStyle,
     indent,
-    jsx: true,
+    jsx,
     pluginName: "style",
     quotes,
     semi,

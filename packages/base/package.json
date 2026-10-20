@@ -45,7 +45,17 @@
     "test:watch": "vitest"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0 || ^10.0.0"
+    "eslint": "^9.0.0 || ^10.0.0",
+    "eslint-plugin-slop": ">=0.1.1",
+    "eslint-plugin-sonarjs": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-slop": {
+      "optional": true
+    },
+    "eslint-plugin-sonarjs": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@antfu/install-pkg": "catalog:dev",
@@ -80,6 +90,8 @@
   },
   "devDependencies": {
     "eslint": "catalog:",
+    "eslint-plugin-slop": "catalog:plugins",
+    "eslint-plugin-sonarjs": "catalog:plugins",
     "eslint-typegen": "catalog:dev",
     "tsdown": "catalog:",
     "tsx": "catalog:dev",

@@ -1,6 +1,7 @@
 import { FlatConfigComposer } from "eslint-flat-config-utils";
 import { findUpSync } from "find-up-simple";
 import type { ConfigNames, OptionsConfig, TypedFlatConfigItem } from "./types";
+import { antislop } from "./configs/antislop";
 import { command } from "./configs/command";
 import { comments } from "./configs/comments";
 import { disables } from "./configs/disables";
@@ -38,7 +39,9 @@ export async function renton(
   ...userConfigs: TypedFlatConfigItem[]
 ): Promise<TypedFlatConfigItem[]> {
   const {
+    antislop: enableAntislop = false,
     command: enableCommand = true,
+    componentExts: componentExtensions = [],
     disables: enableDisables = true,
     formatters: enableFormatters = false,
     gitignore = true,
@@ -107,10 +110,18 @@ export async function renton(
   }
 
   if (enableTypescript) {
+    const optionsTypescript = typeof enableTypescript === "object" ? enableTypescript : {};
     configs.push(typescript({
-      overrides: overrides?.find(c => c.name === "renton/typescript/rules")?.rules,
-      typeAware,
+      ...optionsTypescript,
+      componentExts: optionsTypescript.componentExts ?? componentExtensions,
+      overrides: optionsTypescript.overrides ?? overrides?.find(c => c.name === "renton/typescript/rules")?.rules,
+      typeAware: optionsTypescript.typeAware ?? typeAware,
     }));
+  }
+
+  if (enableAntislop) {
+    const optionsAntislop = typeof enableAntislop === "object" ? enableAntislop : {};
+    configs.push(antislop(optionsAntislop));
   }
 
   if (enableStylistic) {

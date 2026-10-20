@@ -3,12 +3,21 @@ import { interopDefault } from "@renton/eslint-config/utils";
 import { GLOB_VUE } from "../globs";
 
 export interface OptionsVueConfig extends OptionsOverrides {
+  /**
+   * Parse `<script lang="ts">` blocks with `typescript-eslint`'s parser
+   * (via `vue-eslint-parser`'s inner-parser option).
+   *
+   * @default true
+   */
+  typescript?: boolean;
+
   vueVersion?: 2 | 3;
 }
 
 export async function vue(options: OptionsVueConfig = {}): Promise<TypedFlatConfigItem[]> {
   const {
     overrides = {},
+    typescript = true,
     vueVersion = 3,
   } = options;
 
@@ -18,11 +27,35 @@ export async function vue(options: OptionsVueConfig = {}): Promise<TypedFlatConf
     ? pluginVue.configs["flat/recommended"]
     : pluginVue.configs["flat/vue2-recommended"];
 
+  const vueConfigsRenamed = vueConfigs.map((config: any, index: number) => ({
+    ...config,
+    name: `renton/vue/setup/${index}`,
+  }));
+
+  const parserConfigs: TypedFlatConfigItem[] = [];
+
+  if (typescript) {
+    const [tseslint, vueParser] = await Promise.all([
+      interopDefault(import("typescript-eslint")),
+      interopDefault(import("vue-eslint-parser")),
+    ]);
+
+    parserConfigs.push({
+      files: [GLOB_VUE],
+      languageOptions: {
+        parser: vueParser,
+        parserOptions: {
+          extraFileExtensions: [".vue"],
+          parser: tseslint.parser,
+        },
+      },
+      name: "renton/vue/parser",
+    });
+  }
+
   return [
-    ...vueConfigs.map((config: any, index: number) => ({
-      ...config,
-      name: `renton/vue/setup/${index}`,
-    })),
+    ...vueConfigsRenamed,
+    ...parserConfigs,
     {
       files: [GLOB_VUE],
       name: "renton/vue/rules",
@@ -44,7 +77,6 @@ export async function vue(options: OptionsVueConfig = {}): Promise<TypedFlatConf
         "vue/no-extra-parens": "error",
         "vue/no-irregular-whitespace": "error",
         "vue/no-multi-spaces": "error",
-        "vue/no-multiple-template-root": "error",
         "vue/no-spaces-around-equal-signs-in-attribute": "error",
         "vue/no-template-key": "error",
         "vue/no-textarea-mustache": "error",
@@ -66,13 +98,6 @@ export async function vue(options: OptionsVueConfig = {}): Promise<TypedFlatConf
         "vue/v-slot-style": "error",
         "vue/valid-template-root": "error",
         ...overrides,
-      },
-    },
-    {
-      files: [GLOB_VUE],
-      name: "renton/vue/perfectionist",
-      rules: {
-        "perfectionist/sort-jsx-props": ["error", { order: "asc", type: "natural" }],
       },
     },
   ];

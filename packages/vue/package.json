@@ -49,6 +49,7 @@
     "@renton/eslint-config": "workspace:*",
     "@renton/eslint-config-frontend": "workspace:*",
     "eslint-plugin-vue": "catalog:plugins",
+    "typescript-eslint": "catalog:plugins",
     "vue-eslint-parser": "catalog:plugins"
   },
   "devDependencies": {

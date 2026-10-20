@@ -20,11 +20,14 @@ export async function unicorn(options: OptionsOverrides = {}): Promise<TypedFlat
         ...pluginUnicorn.configs.recommended.rules,
 
         "unicorn/consistent-destructuring": "off",
-        "unicorn/no-array-for-each": "off",
         "unicorn/no-array-reduce": "off",
+        // Conflicts with our `jsdoc/require-asterisk-prefix` JSDoc style
+        "unicorn/no-asterisk-prefix-in-documentation-comments": "off",
         "unicorn/no-await-expression-member": "off",
         "unicorn/no-null": "off",
         "unicorn/no-process-exit": "off",
+        // Breaks the canonical `export default defineConfig({...})` config-file pattern
+        "unicorn/no-top-level-side-effects": "off",
         "unicorn/numeric-separators-style": "off",
         "unicorn/prefer-at": "off",
         "unicorn/prefer-module": "off",

@@ -66,9 +66,7 @@ function serializeConfigs(configs: TypedFlatConfigItem[]) {
     if (c.rules) {
       clone.rules = Object.entries(c.rules)
         .map(([rule, value]) => {
-          if (value === "off" || value === 0)
-            return `- ${rule}`;
-          return rule;
+          return value === "off" || value === 0 ? `- ${rule}` : rule;
         })
         .toSorted((a, b) => a.localeCompare(b));
     }

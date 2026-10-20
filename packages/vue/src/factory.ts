@@ -22,10 +22,19 @@ export async function rentonVue(
     throw new Error("`tailwindcssConfigPath` is required when `tailwindcss` is enabled");
   }
 
-  const baseConfigs = await renton(baseOptions);
+  // `renton()` treats `typescript` as `boolean | OptionsTypescript`; the vue
+  // parser chain is on unless the caller explicitly disabled it
+  const typescriptEnabled = typeof baseOptions.typescript === "object"
+    ? true
+    : (baseOptions.typescript ?? true);
+
+  const baseConfigs = await renton({
+    ...baseOptions,
+    ...(enableVue && { componentExts: ["vue", ...(baseOptions.componentExts ?? [])] }),
+  });
 
   const vueConfigs = enableVue
-    ? await vue({ vueVersion })
+    ? await vue({ typescript: typescriptEnabled, vueVersion })
     : [];
 
   const vueI18nConfigs = enableVueI18n

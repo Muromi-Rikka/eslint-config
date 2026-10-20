@@ -5,11 +5,29 @@ export type Awaitable<T> = Promise<T> | T;
 
 export interface OptionsConfig {
   /**
+   * Enable anti-slop rules from `eslint-plugin-slop` and a curated subset of `eslint-plugin-sonarjs`.
+   *
+   * Requires installing:
+   * - `eslint-plugin-slop`
+   * - `eslint-plugin-sonarjs`
+   *
+   * @default false
+   */
+  antislop?: boolean | OptionsAntislop;
+
+  /**
    * Enable inline command directives via eslint-plugin-command.
    *
    * @default true
    */
   command?: boolean;
+
+  /**
+   * Additional component file extensions (e.g. `vue`) whose script blocks
+   * should be linted by the TypeScript rules. Used by satellite packages
+   * (e.g. `@renton/eslint-config-vue`) to lint `<script>` blocks in SFCs.
+   */
+  componentExts?: string[];
 
   /**
    * Enable context-aware rule disabling for scripts, cli, bin, .d.ts, and config files.
@@ -68,7 +86,7 @@ export interface OptionsConfig {
   test?: boolean | OptionsOverrides;
 
   typeAware?: boolean;
-  typescript?: boolean;
+  typescript?: boolean | OptionsTypescript;
   unicorn?: boolean;
   yaml?: boolean;
 }
@@ -148,7 +166,32 @@ export interface OptionsOverrides {
   overrides?: Rules;
 }
 
-// eslint-disable-next-line perfectionist/sort-modules -- OptionsJSXA11y extends OptionsOverrides, must come after
+// eslint-disable-next-line perfectionist/sort-modules -- OptionsAntislop extends OptionsOverrides, must come after
+export interface OptionsAntislop extends OptionsOverrides {
+  /**
+   * Cognitive complexity threshold for `sonarjs/cognitive-complexity`.
+   * Set to `false` to disable the rule.
+   *
+   * @default 15
+   */
+  cognitiveComplexity?: false | number;
+
+  /**
+   * Enable rules from `eslint-plugin-slop`.
+   * Pass an object to configure the plugin via `settings.slop`.
+   *
+   * @default true
+   */
+  slop?: boolean | OptionsSlop;
+
+  /**
+   * Enable the curated subset of rules from `eslint-plugin-sonarjs`.
+   *
+   * @default true
+   */
+  sonarjs?: boolean;
+}
+
 export interface OptionsJSXA11y extends OptionsOverrides {}
 
 export interface OptionsPnpm {
@@ -173,11 +216,67 @@ export interface OptionsPnpm {
   json?: boolean;
 
   /**
+   * Enforce key sort order in pnpm-workspace.yaml.
+   *
+   * @default true
+   */
+  sort?: boolean;
+
+  /**
+   * Enforce blank lines between groups in pnpm-workspace.yaml.
+   *
+   * @default true
+   */
+  stylistic?: boolean;
+
+  /**
    * Enable linting for pnpm-workspace.yaml.
    *
    * @default true
    */
   yaml?: boolean;
+}
+
+export interface OptionsSlop {
+  /**
+   * Working directory for the plugin.
+   */
+  cwd?: string;
+
+  /**
+   * Scope of files the plugin inspects.
+   *
+   * @default "recent-changes"
+   */
+  inspection?: "full" | "recent-changes" | "uncommitted" | {
+    mode: "full" | "uncommitted";
+  } | {
+    mode: "recent-changes";
+    tracebackCommits?: number;
+  };
+}
+
+export interface OptionsTypescript extends OptionsOverrides {
+  /**
+   * Additional component file extensions (e.g. `vue`) whose script blocks
+   * should be linted by the TypeScript rules. Adds a matching extension glob
+   * and registers the extension as a `vue-eslint-parser` extra file
+   * extension in satellite packages.
+   */
+  componentExts?: string[];
+
+  /**
+   * Custom tsconfig path (or paths) used as `tsconfigRootDir` when
+   * `typeAware` is enabled.
+   */
+  tsconfigPath?: string;
+
+  /**
+   * Enable type-aware linting rules.
+   *
+   * @default false
+   */
+  typeAware?: boolean;
 }
 
 export interface StylisticOptions {

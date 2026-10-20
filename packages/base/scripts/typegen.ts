@@ -5,6 +5,7 @@ import { renton } from "../src/factory";
 
 const configs: any[] = [
   ...(await renton({
+    antislop: true,
     command: true,
     disables: true,
     formatters: false,

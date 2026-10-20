@@ -9,12 +9,8 @@ export async function interopDefault<T>(m: Awaitable<T>): Promise<T extends { de
 }
 
 export function isInEditorEnv(): boolean {
-  if (process.env.CI)
-    return false;
-  if (process.env.GIT_EXEC_PATH)
-    return false;
-  return !!(process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM || process.env.NVIM || process.env.KATE_PID
-  );
+  return !(process.env.CI || process.env.GIT_EXEC_PATH)
+    && !!(process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM || process.env.NVIM || process.env.KATE_PID);
 }
 
 export function renamePluginInConfigs(configs: TypedFlatConfigItem[], map: Record<string, string>): TypedFlatConfigItem[] {
@@ -26,9 +22,7 @@ export function renamePluginInConfigs(configs: TypedFlatConfigItem[], map: Recor
       clone.plugins = Object.fromEntries(
         Object.entries(clone.plugins)
           .map(([key, value]) => {
-            if (Object.hasOwn(map, key))
-              return [map[key], value];
-            return [key, value];
+            return [Object.hasOwn(map, key) ? map[key] : key, value];
           }),
       );
     }

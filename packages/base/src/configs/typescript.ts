@@ -1,14 +1,10 @@
-import type { OptionsOverrides, Rules, TypedFlatConfigItem } from "../types";
+import type { OptionsTypescript, Rules, TypedFlatConfigItem } from "../types";
 import { GLOB_TS, GLOB_TSX } from "../globs";
 import { interopDefault } from "../utils";
 
-export interface OptionsTypescript extends OptionsOverrides {
-  tsconfigPath?: string;
-  typeAware?: boolean;
-}
-
 export async function typescript(options: OptionsTypescript = {}): Promise<TypedFlatConfigItem[]> {
   const {
+    componentExts: componentExtensions = [],
     overrides = {},
     tsconfigPath,
     typeAware = false,
@@ -16,7 +12,7 @@ export async function typescript(options: OptionsTypescript = {}): Promise<Typed
 
   const tseslint = await interopDefault(import("typescript-eslint"));
 
-  const files = [GLOB_TS, GLOB_TSX];
+  const files = [GLOB_TS, GLOB_TSX, ...componentExtensions.map(extension => `**/*.${extension}`)];
 
   const typeAwareRules = {
     "dot-notation": "off",
@@ -28,13 +24,13 @@ export async function typescript(options: OptionsTypescript = {}): Promise<Typed
     "ts/no-for-in-array": "error",
     "ts/no-implied-eval": "error",
     "ts/no-misused-promises": ["error", { checksVoidReturn: false }],
-    "ts/no-throw-literal": "error",
     "ts/no-unnecessary-type-assertion": "error",
     "ts/no-unsafe-argument": "error",
     "ts/no-unsafe-assignment": "error",
     "ts/no-unsafe-call": "error",
     "ts/no-unsafe-member-access": "error",
     "ts/no-unsafe-return": "error",
+    "ts/only-throw-error": "error",
     "ts/restrict-plus-operands": ["error", { allowAny: false, allowBoolean: false, allowNullish: false, allowNumberAndString: false, allowRegExp: false }],
     "ts/restrict-template-expressions": ["error", { allowAny: false, allowBoolean: false, allowNullish: false, allowNumber: true }],
     "ts/unbound-method": "error",
@@ -49,6 +45,7 @@ export async function typescript(options: OptionsTypescript = {}): Promise<Typed
           ecmaFeatures: { jsx: true },
           ecmaVersion: "latest",
           sourceType: "module",
+          ...(componentExtensions.length > 0 && { extraFileExtensions: componentExtensions.map(extension => `.${extension}`) }),
           ...(typeAware && { projectService: true, tsconfigRootDir: tsconfigPath }),
         },
       },

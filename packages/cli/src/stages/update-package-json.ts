@@ -33,11 +33,9 @@ export async function updatePackageJson(result: PromptResult): Promise<void> {
     }
   }
 
-  if (result.extra.length > 0) {
-    for (const item of result.extra as ExtraLibrariesOption[]) {
-      if (item === "formatter")
-        addDependencies(dependenciesMap.formatter);
-    }
+  for (const item of result.extra as ExtraLibrariesOption[]) {
+    if (item === "formatter")
+      addDependencies(dependenciesMap.formatter);
   }
 
   for (const framework of result.frameworks) {

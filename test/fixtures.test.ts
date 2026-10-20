@@ -52,13 +52,19 @@ export default renton(
 )
   `);
 
-    await x("npx", ["eslint", ".", "--fix"], {
+    const result = await x("npx", ["eslint", ".", "--fix"], {
       nodeOptions: {
         cwd: target,
         stdio: "pipe",
       },
       throwOnError: false,
     });
+
+    // exit 1 = lint errors remain (expected for --fix on error fixtures);
+    // exit >= 2 = eslint crashed or the config is broken — surface it instead
+    // of silently comparing unchanged files against snapshots
+    if ((result.exitCode ?? 0) >= 2)
+      throw new Error(`eslint failed (exit ${result.exitCode}): ${result.stderr}`);
 
     const files = await glob("**/*", {
       cwd: target,

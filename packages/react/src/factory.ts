@@ -17,6 +17,7 @@ export async function rentonReact(
 ): Promise<TypedFlatConfigItem[]> {
   const {
     next: enableNext = false,
+    react: enableReact = true,
     tailwindcss: enableTailwindcss = false,
     tailwindcssConfigPath,
     tanstackQuery: enableTanstackQuery = false,
@@ -30,8 +31,11 @@ export async function rentonReact(
 
   const baseConfigs = await renton(baseOptions);
 
-  const reactConfigs = await react();
-  const configs: TypedFlatConfigItem[] = [...reactConfigs];
+  const configs: TypedFlatConfigItem[] = [];
+
+  if (enableReact) {
+    configs.push(...(await react()));
+  }
 
   if (enableNext) {
     configs.push(...(await next()));
