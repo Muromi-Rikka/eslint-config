@@ -1,5 +1,14 @@
 # @renton/eslint-config-vue
 
+## 1.1.1
+
+### Patch Changes
+
+- Fix TypeScript parsing in Vue SFCs. `rentonVue()` now registers `typescript-eslint` as the inner parser of `vue-eslint-parser` for `**/*.vue` when `typescript` is enabled, and passes `componentExts: ["vue"]` so TypeScript rules lint `<script lang="ts">` blocks. `renton()` gains the `componentExts` option and exports the `OptionsTypescript` type.
+- Updated dependencies [`5c687b3`, `5c687b3`]:
+  - @renton/eslint-config@1.2.0
+  - @renton/eslint-config-frontend@1.1.1
+
 ## 1.1.0
 
 ### Minor Changes

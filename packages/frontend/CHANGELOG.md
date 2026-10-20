@@ -1,5 +1,12 @@
 # @renton/eslint-config-frontend
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [`5c687b3`, `5c687b3`]:
+  - @renton/eslint-config@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes

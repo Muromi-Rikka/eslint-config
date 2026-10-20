@@ -1,5 +1,17 @@
 # @renton/eslint-config-react
 
+## 1.2.0
+
+### Minor Changes
+
+- Sync with upstream antfu eslint config v9.5.1: new antislop and pnpm-workspace rule presets, an expanded TypeScript rule set, and refreshed plugin catalog. `rentonReact()` gains a `react` option to toggle the base React configs, and the CLI's formatter dependency setup is simplified.
+
+### Patch Changes
+
+- Updated dependencies [`5c687b3`, `5c687b3`]:
+  - @renton/eslint-config@1.2.0
+  - @renton/eslint-config-frontend@1.1.1
+
 ## 1.1.0
 
 ### Minor Changes
