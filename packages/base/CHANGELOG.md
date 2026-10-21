@@ -1,5 +1,11 @@
 # @renton/eslint-config
 
+## 1.2.1
+
+### Patch Changes
+
+- Align all packages on the 1.2.1 release train so every package in the monorepo shares the same version.
+
 ## 1.2.0
 
 ### Minor Changes

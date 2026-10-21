@@ -1,5 +1,15 @@
 # @renton/eslint-config-react
 
+## 1.2.1
+
+### Patch Changes
+
+- - `@renton/eslint-config-react`: disable `react/naming-convention-ref-name` — it contradicted `unicorn/name-replacements` (`*Ref` vs `*Reference`) with no options to reconcile; `unicorn` remains the single naming authority.
+  - `@renton/eslint-config-cli`: generated configs now include a standalone global-ignores object (flat-config global ignores), and `additionalConfigs` defaults to `[]`, so omitting it no longer emits a literal `undefined`.
+- Updated dependencies []:
+  - @renton/eslint-config@1.2.1
+  - @renton/eslint-config-frontend@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes

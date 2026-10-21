@@ -1,5 +1,14 @@
 # @renton/eslint-config-vue
 
+## 1.2.1
+
+### Patch Changes
+
+- Align all packages on the 1.2.1 release train so every package in the monorepo shares the same version.
+- Updated dependencies []:
+  - @renton/eslint-config@1.2.1
+  - @renton/eslint-config-frontend@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes
