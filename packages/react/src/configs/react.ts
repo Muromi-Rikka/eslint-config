@@ -33,6 +33,11 @@ export async function react(options: OptionsOverrides = {}): Promise<TypedFlatCo
       name: "renton/react/rules",
       rules: {
         ...pluginReact.configs.recommended.rules,
+        // Conflicts with `unicorn/name-replacements`, which expands `Ref` → `Reference`:
+        // no ref name can satisfy both rules. Keep unicorn's expansion, name refs `*Reference`.
+        // The `@eslint-react/` key overwrites the recommended spread entry before
+        // `renameRules` maps it to `react/` (see base `renamePluginInConfigs`).
+        "@eslint-react/naming-convention-ref-name": "off",
         "react-hooks/exhaustive-deps": "warn",
         "react-hooks/rules-of-hooks": "error",
         "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],

@@ -1160,6 +1160,7 @@
     ],
     "name": "renton/react/rules",
     "rules": [
+      "- react/naming-convention-ref-name",
       "react-hooks/exhaustive-deps",
       "react-hooks/rules-of-hooks",
       "react-refresh/only-export-components",
@@ -1185,7 +1186,6 @@
       "react/jsx-no-namespace",
       "react/naming-convention-context-name",
       "react/naming-convention-id-name",
-      "react/naming-convention-ref-name",
       "react/no-access-state-in-setstate",
       "react/no-array-index-key",
       "react/no-children-count",
